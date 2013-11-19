@@ -15,13 +15,17 @@ window.onload = function(){
             return [false, "Det du skrev kan inte tolkas som ett nummer!"];
         }
         
+        if(number == "")
+        {
+            return [false, "Du skrev inget nummer!"]
+        }
+        
 	    //Kontrollerar indatan
 	    if(number < 1 || number > 100)
         {
             return [false, "Numret är inte inom intervallet 1-100!"];
         }
     
-
 		
 	    /*Jag antar att felaktiga gissningar inte ska räknas så därför räknas antalet gissningar upp
 	      först efter den lilla kontrollen.	    */

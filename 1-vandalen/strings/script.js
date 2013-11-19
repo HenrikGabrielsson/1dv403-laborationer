@@ -4,17 +4,21 @@ window.onload = function(){
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"
 	var convertString = function(str){
-		// Plats för förändring.		
-		// Returnera den konverterade strängen.
-		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-	    
+
 	    //Strängen som ska skapas initieras
 	    var convertedString = "";
+	    
+	    //Om användaren inte skriver något så kastas ett felmeddelande iväg.
+	    if(str.length == 0) 
+	    {
+	        throw new Error("Du måste skriva något!");
+	    }
+	    
 	    
 	    //Loop som går igenom varje tecken i strängen.
 	    for(var i = 0; i < str.length; i++)
 	    {
-	        //Gör om a/A till '#'
+	        	        //Gör om a/A till '#'
 	        if(str.charAt(i) == "a" || str.charAt(i) == "A")
 	        {
 	            convertedString = convertedString + "#";
@@ -30,9 +34,8 @@ window.onload = function(){
 	        {
 	            convertedString = convertedString + str.charAt(i).toUpperCase();
 	        }
-
 	    }
-	    
+
 	    return convertedString;
 	    
 	};
