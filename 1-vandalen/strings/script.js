@@ -7,13 +7,34 @@ window.onload = function(){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-	
+	    
+	    //Strängen som ska skapas initieras
+	    var convertedString = "";
+	    
+	    //Loop som går igenom varje tecken i strängen.
+	    for(var i = 0; i < str.length; i++)
+	    {
+	        //Gör om a/A till '#'
+	        if(str.charAt(i) == "a" || str.charAt(i) == "A")
+	        {
+	            convertedString = convertedString + "#";
+	        }
+	        
+	        //else if-satser som gör om gemener till versaler och tvärtom.
+	        else if(str.charAt(i) == str.charAt(i).toUpperCase())
+	        {
+	            convertedString = convertedString + str.charAt(i).toLowerCase();
+	        }
+	        
+	        else if(str.charAt(i) == str.charAt(i).toLowerCase())
+	        {
+	            convertedString = convertedString + str.charAt(i).toUpperCase();
+	        }
 
-
-
-
-
-
+	    }
+	    
+	    return convertedString;
+	    
 	};
 	// ------------------------------------------------------------------------------
 
