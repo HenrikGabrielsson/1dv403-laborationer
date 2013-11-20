@@ -2,8 +2,11 @@
 
 var makePerson = function(persArr){
 
-
-	// Din kod här...
-
-}
+    //objektet som ska returneras.
+	var personData = new Object();
+	
+	persArr.sort();
+	
+    return personData;
+};
 

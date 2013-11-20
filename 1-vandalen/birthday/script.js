@@ -4,12 +4,41 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-		
 
-
-			// Din kod här.
-
-
+		//Födelsedagen
+        var birthday = new Date(date);
+        
+        //Nuvarande tid
+        var now = new Date();
+        
+        //Dagar kvar till nästa födelsedag
+        var daysleft = Math.ceil((birthday.getTime() - now.getTime())  / (1000 * 60 * 60 * 24));
+        
+        //Skottår
+        var leapyears = 0;
+        for(var i = birthday.getFullYear(); i <=now.getFullYear(); i++)
+        {
+            if(i % 4 == 0)
+            {
+                leapyears++;
+            }
+        }
+        
+        daysleft = (daysleft  + leapyears) % 365;
+        //Ifall födelsedagen redan har varit detta året..
+        if(daysleft < 0 )
+        {
+            daysleft += 365;
+        }
+        
+        //Om det inte fungerar...
+        if(isNaN(daysleft))
+        {
+            throw new Error ("Du skrev in datumet på fel sätt.");
+        }
+        
+        
+        return daysleft;
 
 
 	};
@@ -28,7 +57,7 @@ window.onload = function(){
 		p.classList.remove( "error");
 
 		try {
-			var answer = birthday(input.value) // Läser in texten från textrutan och skickar till funktionen "convertString"
+			var answer = birthday(input.value); // Läser in texten från textrutan och skickar till funktionen "convertString"
 			var message;
 			switch (answer){
 				case 0: message = "Grattis på födelsedagen!";
