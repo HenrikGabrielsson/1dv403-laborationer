@@ -9,7 +9,7 @@ window.onload = function(){
 	    var convertedString = "";
 	    
 	    //Om användaren inte skriver något så kastas ett felmeddelande iväg.
-	    if(str.length == 0) 
+	    if(str.length === 0) 
 	    {
 	        throw new Error("Du måste skriva något!");
 	    }
@@ -19,13 +19,13 @@ window.onload = function(){
 	    for(var i = 0; i < str.length; i++)
 	    {
 	        	        //Gör om a/A till '#'
-	        if(str.charAt(i) == "a" || str.charAt(i) == "A")
+	        if(str.charAt(i) == "ö" || str.charAt(i) == "Ö")
 	        {
 	            convertedString = convertedString + "#";
 	        }
 	        
 	        //else if-satser som gör om gemener till versaler och tvärtom.
-	        else if(str.charAt(i) == str.charAt(i).toUpperCase())
+	        else if(str.charAt(i) === str.charAt(i).toUpperCase())
 	        {
 	            convertedString = convertedString + str.charAt(i).toLowerCase();
 	        }

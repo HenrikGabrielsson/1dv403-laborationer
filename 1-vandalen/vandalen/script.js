@@ -20,7 +20,7 @@ var makePerson = function(persArr){
 	    personData.averageAge += (persArr[i].age);
 	    sortedArrName[i] = persArr[i].name;
 	    sortedArrAge[i] = persArr[i].age;
-
+	}
 
 	//sorterar arrayer med namn respektive åldrar
 	sortedArrName = sortedArrName.sort(function(a,b){return a.toString().localeCompare(b.toString())});
@@ -30,10 +30,10 @@ var makePerson = function(persArr){
 	//Skapar strängen med namnen
 	personData.names = sortedArrName.join(", ");
 	
-	//tilldelar egenskaperna för åldrar sina 
+	//tilldelar egenskaperna för åldrar sina värden 
 	personData.minAge = sortedArrAge[0];
 	personData.maxAge = sortedArrAge[(sortedArrAge.length-1)];
 	personData.averageAge = Math.round(personData.averageAge /= persArr.length);
 
     return personData;
-};
+}

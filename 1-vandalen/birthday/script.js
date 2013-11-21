@@ -18,7 +18,7 @@ window.onload = function(){
         var leapyears = 0;
         for(var i = birthday.getFullYear(); i <=now.getFullYear(); i++)
         {
-            if(i % 4 == 0)
+            if(i % 4 === 0)
             {
                 leapyears++;
             }
