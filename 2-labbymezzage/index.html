@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Index - Labby Mezzage</title>
+    <head>
+        <title>Index - Labby Mezzage</title>
+        
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <h1>Labby Mezzage</h1>
+        </header>
+        <div id="container">
+        
+            <!--Sektion för alla meddelanden-->
+            <div id="message_board">
+            
+            <p class="number_of_messages"></p>
+            </div>
+            
+            
+            <!--Sektion för textfältet-->
+            <div id="new_message">
+                <form>
+                <textarea></textarea>
+                <button type="submit">Skriv</input>
+                </form>
+            </div>
     
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-
-<body>
-    
-</body>
-    
+        <script src="script/message.js"></script>
+        <script src="script/main.js"></script>
+    </body>
 </html>
