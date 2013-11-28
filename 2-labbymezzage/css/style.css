@@ -1,12 +1,34 @@
-header
+body
 {
-    
 }
+
+header h1
+{
+    display:none;
+}
+
+
 
 #container
 {
+    background-color:white;
+    overflow:auto;
+    
+    border-radius:20px;
+    
     max-width:500px;
     margin:auto;
+}
+
+#message_board
+{
+    min-height:150px;
+}
+
+#new_message form
+{
+    margin:auto;
+    width:90%;
 }
 
 #new_message textarea
@@ -20,5 +42,25 @@ header
     
     border-radius:10px;
     border:1pt solid #AAAAAA;
+}
 
+#new_message textarea:focus
+{
+    border-color:black;
+}
+
+
+
+#new_message button
+{
+    background-color:#ff7f00;
+    border:none;
+    border-radius:10px;
+    width:100px;
+    height:40px;
+    
+    
+    font-family:tahoma;
+    
+    float:right;
 }
