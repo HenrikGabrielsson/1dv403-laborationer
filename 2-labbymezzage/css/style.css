@@ -13,7 +13,7 @@ body
 
 header
 {
-    margin-top:20px;
+    margin-top:50px;
     height:100px;
     background-image:url('logo.png');
     background-repeat:no-repeat;
@@ -60,6 +60,12 @@ header h1
     border:1pt solid #AAAAAA;
 }
 
+#new_message textarea:focus
+{
+    outline: none;
+    border:1pt solid #FFFFFF;
+}
+
 #new_message button
 {
     background-color:#ff7f00;
@@ -78,4 +84,19 @@ header h1
 #new_message button:hover
 {
     text-decoration:underline;    
+    background-color:#ff9933;
 }
+
+#new_message button:active
+{
+    text-decoration:underline;    
+    background-color:#ff7f00;
+}
+
+#new_message button:focus
+{
+    outline: none;  
+    background-color:#ff9933;
+}
+
+
