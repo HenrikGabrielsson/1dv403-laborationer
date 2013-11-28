@@ -1,5 +1,22 @@
+html
+{
+    height:100%;
+}
+
 body
 {
+    background: -webkit-linear-gradient(top, white, black);
+    background: -o-linear-gradient(top, white, black); 
+    background: -moz-linear-gradient(top, white, black); 
+    background: linear-gradient(to top, #222222, black);
+}
+
+header
+{
+    margin-top:20px;
+    height:100px;
+    background-image:url('logo.png');
+    background-repeat:no-repeat;
 }
 
 header h1
@@ -11,7 +28,6 @@ header h1
 
 #container
 {
-    background-color:white;
     overflow:auto;
     
     border-radius:20px;
@@ -22,7 +38,7 @@ header h1
 
 #message_board
 {
-    min-height:150px;
+    min-height:120px;
 }
 
 #new_message form
@@ -44,13 +60,6 @@ header h1
     border:1pt solid #AAAAAA;
 }
 
-#new_message textarea:focus
-{
-    border-color:black;
-}
-
-
-
 #new_message button
 {
     background-color:#ff7f00;
@@ -59,8 +68,14 @@ header h1
     width:100px;
     height:40px;
     
-    
+    font-weight:bold;
+    font-size:13pt;
     font-family:tahoma;
     
     float:right;
+}
+
+#new_message button:hover
+{
+    text-decoration:underline;    
 }
