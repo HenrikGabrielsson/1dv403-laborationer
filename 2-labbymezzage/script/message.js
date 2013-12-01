@@ -26,4 +26,3 @@ Message.prototype.getHTMLText = function() {
     var HTMLstring = this.getText();
     return HTMLstring.replace("\\n", "<br>");    
 }; 
-
