@@ -52,13 +52,15 @@ header
     
     border-radius:10px;
     border:1pt solid #AAAAAA;
+    
+    background-color:#FFD8AB;
 }
 
-textarea:focus
+#new_message:focus
 {
     outline: none;
     border:1pt solid #FFFFFF;
-    background-color:#ff7f00;
+    background-color:white;
 }
 
 #form button
@@ -93,5 +95,11 @@ textarea:focus
     outline: none;  
     background-color:#ff9933;
 }
+
+#message_board
+{
+    color:white;
+}
+
 
 
