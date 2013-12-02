@@ -66,6 +66,17 @@ function renderMessage(messagePosition)
     dateButton.setAttribute("src","datum.gif");
     dateButton.setAttribute("alt","knapp som visar när meddelandet skrevs");
     dateButton.setAttribute("class","dateButton");
+    dateButton.addEventListener("click", displayDate, false);
+    
+    function deleteMessage()
+    {
+        init.messages.pop()        
+    }
+    
+    function displayDate()
+    {
+        alert("Inlägget skapades den " + init.messages[messagePosition].getDate().getDate() + "/" + init.messages[messagePosition].getDate().getMonth() + " " +init.messages[messagePosition].getDate().getFullYear() + " klockan " + time + ":" + init.messages[messagePosition].getDate().getSeconds());
+    }
     
     //Get in there!
     footer.appendChild(pTime);
