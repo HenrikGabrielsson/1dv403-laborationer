@@ -41,13 +41,23 @@ function renderMessage(messagePosition)
     
     var message_board = document.getElementById("message_board");
     
+    //Alla element skapas.
     var message = document.createElement("div");
     message.setAttribute("id","message"+ messagePosition);
+    message.setAttribute("class","message");
     
-    var p = document.createElement("p");
-    p.innerHTML = init.messages[messagePosition].getText();
+    var pMessage = document.createElement("p");
+    var pDate = document.createElement("p");
+    pDate.setAttribute("class","date");
     
-    message.appendChild(p);
+    //Texter som ska in i elementen läggs till
+    pMessage.innerHTML = init.messages[messagePosition].getHTMLText();
+    var time = init.messages[messagePosition].getDate().getHours() + ":" + init.messages[messagePosition].getDate().getMinutes();
+    pDate.innerHTML = time;
+    
+    //Get in there!
+    message.appendChild(pMessage);
+    message.appendChild(pDate);
     message_board.appendChild(message);
     
 }
