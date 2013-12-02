@@ -47,17 +47,34 @@ function renderMessage(messagePosition)
     message.setAttribute("class","message");
     
     var pMessage = document.createElement("p");
-    var pDate = document.createElement("p");
-    pDate.setAttribute("class","date");
+    var pTime = document.createElement("p");
+    var footer = document.createElement("div");
+    footer.setAttribute("class","messageFooter");
     
     //Texter som ska in i elementen läggs till
     pMessage.innerHTML = init.messages[messagePosition].getHTMLText();
     var time = init.messages[messagePosition].getDate().getHours() + ":" + init.messages[messagePosition].getDate().getMinutes();
-    pDate.innerHTML = time;
+    pTime.innerHTML = time;
+    
+    //Lägger till knappar för att radera meddelandet och för att se tiden det skapades.
+    var deleteButton = document.createElement("img");
+    deleteButton.setAttribute("src","radera.gif");
+    deleteButton.setAttribute("alt","knapp som raderar meddelandet");
+    deleteButton.setAttribute("class","deleteButton");
+    
+    var dateButton = document.createElement("img");
+    dateButton.setAttribute("src","datum.gif");
+    dateButton.setAttribute("alt","knapp som visar när meddelandet skrevs");
+    dateButton.setAttribute("class","dateButton");
     
     //Get in there!
+    footer.appendChild(pTime);
+    footer.appendChild(deleteButton);
+    footer.appendChild(dateButton);
+    
     message.appendChild(pMessage);
-    message.appendChild(pDate);
+    message.appendChild(footer);
+    
     message_board.appendChild(message);
     
 }

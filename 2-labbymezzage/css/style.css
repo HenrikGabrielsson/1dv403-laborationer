@@ -127,14 +127,32 @@ header
     border: solid #ff7f00;
     
     margin:20px;
-    padding:10px 10px 0 10px;
 }
 
-.message .date
+
+.message .messageFooter
 {
     font-size:11pt;
     font-style:italic;
+    font-weight:bold;
+    color:black;
     
-    margin-top:10px;
+    width:100%;
+    display:block;
+    background-color:#ff7f00;
+    border-radius:0 0 5px 5px;
+    
+    
+    margin-top:20px;
+    padding: 0;
+}
+
+.messageFooter p
+{
+    float:left;
+}
+.messageFooter img
+{
+    margin: 5px 0 0 10%;
 }
 
