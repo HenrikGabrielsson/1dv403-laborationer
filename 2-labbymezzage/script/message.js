@@ -24,5 +24,5 @@ Message.prototype.toString = function() {
 Message.prototype.getHTMLText = function() {
     
     var HTMLstring = this.getText();
-    return HTMLstring.replace("\\n", "<br>");    
+    return HTMLstring.replace(/[\n\r]/g, "<br/>");    
 }; 

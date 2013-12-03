@@ -15,9 +15,13 @@ var main = {
         document.getElementById("messageCount").innerHTML = "Antal meddelanden: " + main.messages.length;
         
         var submit = document.getElementById("submit_button");
+        var textField = document.getElementById("new_message");
         submit.addEventListener("click", main.getMessage, false);
         
+        //kontroll ifall Enter eller Shift+Enter trycks ner
+        textField.addEventListener("keyup", function(event){if (event.keyCode == 13 && !event.shiftKey){main.getMessage();}}, false);
     },
+
     
     //Funktion som hämtar meddelandet från användaren
     getMessage:function ()
