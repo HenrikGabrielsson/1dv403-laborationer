@@ -16,7 +16,7 @@ var main = {
         
         var submit = document.getElementById("submit_button");
         submit.addEventListener("click", main.getMessage, false);
-    
+        
     },
     
     //Funktion som hämtar meddelandet från användaren
@@ -28,7 +28,8 @@ var main = {
         
         //tömmer input-fältet.
         message_text.value = "";
-    
+
+        //Dags att skriva ut arrayen
         main.renderMessages(main.messages.length - 1);
     },
     
@@ -77,8 +78,12 @@ var main = {
         deleteButton.addEventListener("click", deleteMessage, false);
         function deleteMessage()
         {
-            main.messages.splice(messagePosition,1);
-            main.renderMessages();
+            if(confirm("Vill du ta bort meddelandet?"))
+            {
+                main.messages.splice(messagePosition,1);
+                main.renderMessages();
+            }
+        
         }
         
         var dateButton = document.createElement("img");
