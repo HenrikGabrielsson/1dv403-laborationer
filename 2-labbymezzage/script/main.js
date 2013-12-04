@@ -70,7 +70,14 @@ var main = {
         
         //Texter som ska in i elementen läggs till
         pMessage.innerHTML = message.getHTMLText();
-        var time = message.getDate().getHours() + ":" + message.getDate().getMinutes();
+        
+        //lägger till en nolla på tal mindre än 10 för att få ett snyggt format på tiden
+        function lessThanTen(number)
+        {
+            return(number < 10? "0"+number : number);
+        }
+        
+        var time = message.getDate().getHours() + ":" + lessThanTen(message.getDate().getMinutes()) + ":" + lessThanTen(message.getDate().getSeconds());
         pTime.innerHTML = time;
         
  
@@ -97,7 +104,7 @@ var main = {
         dateButton.addEventListener("click", displayDate, false);
         function displayDate()
         {
-            alert("Inlägget skapades den " + message.getDate().getDate() + "/" + message.getDate().getMonth() + " " + message.getDate().getFullYear() + " klockan " + time + ":" + message.getDate().getSeconds());
+            alert("Inlägget skapades den " + message.getDate().getDate() + "/" + message.getDate().getMonth() + " " + message.getDate().getFullYear() + " klockan " + time);
         }
         
        
