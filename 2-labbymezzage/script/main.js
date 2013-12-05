@@ -10,7 +10,7 @@ var main = {
     message_board: document.getElementById("message_board"),
     
     //Main-funktionen
-    init: window.onload = function()    
+    init: function()    
     {
         document.getElementById("messageCount").innerHTML = "Antal meddelanden: " + main.messages.length;
         
@@ -19,7 +19,7 @@ var main = {
         submit.addEventListener("click", main.getMessage, false);
         
         //kontroll ifall Enter eller Shift+Enter trycks ner
-        textField.addEventListener("keyup", function(event){if (event.keyCode == 13 && !event.shiftKey){main.getMessage();}}, false);
+        textField.addEventListener("keypress", function(event){if (event.keyCode == 13 && !event.shiftKey){main.getMessage();}}, false);
     },
 
     
@@ -126,6 +126,7 @@ var main = {
     
 };
 
+window.onload = main.init(); 
 
 
 
