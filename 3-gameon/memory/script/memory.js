@@ -68,15 +68,21 @@ var Memory =
             
             for(var i = 0; i < memoryBoard.length; i++)
             {
-                var card = document.createElement("div");
-                card.setAttribute("class","card");
+                
+                var cardDiv = document.createElement("div");
+                cardDiv.setAttribute("class","card");
+                
+                var cardPicture = document.createElement("img");
+                cardPicture.setAttribute("class",i );
+                cardPicture.setAttribute("src","pics/"+ memoryBoard[i] +".png");
                 
                 if(i % width === 0)
                 {
-                card.setAttribute("class","card new_row_card");
+                    cardDiv.setAttribute("class","card new_row_card");
                 }
                 
-                Memory.game_board.appendChild(card);
+                cardDiv.appendChild(cardPicture);
+                Memory.game_board.appendChild(cardDiv);
             }
             
     }
