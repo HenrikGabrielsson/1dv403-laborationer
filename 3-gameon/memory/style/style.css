@@ -5,8 +5,10 @@
 .card
 {
     float:left;
-    
-    margin:10px;
+
+    width:40px;
+    height:40px;
+
 }
 
 .card.new_row_card
