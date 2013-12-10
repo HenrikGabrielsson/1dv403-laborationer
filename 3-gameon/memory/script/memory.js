@@ -5,7 +5,7 @@ var Memory =
     
     game_board: document.getElementById("game_board"),
     
-    //Här sparas antalet gissningar
+    correctGuesses: 0,
     guesses: 0,
 
     //spelbrädet
@@ -68,6 +68,8 @@ var Memory =
         //här skapas spelplanen  
         Memory.memoryBoard = new RandomGenerator.getPictureArray(height, width);
         
+        //funktion som fixar closure-problemet i loopen nedan på nåt sätt som bara aliens förstår.
+        var sendToTryCard = function(j) {return function() {tryCard(j)}};
 
         //Spelbrädet byggs upp och "korten" tilldelas klasser med nummer(0,1,2,3) 
         //som kan jämföras med arrayen MemoryBoard och på så sätt kan man bestämma vad som finns på "baksidan"
@@ -83,7 +85,7 @@ var Memory =
             
             var cardLink = document.createElement("a");
             cardLink.setAttribute("class",i );
-            cardLink.addEventListener("click", function(){tryCard(this.getAttribute("class"))}, false);
+            cardLink.addEventListener("click", sendToTryCard(i), false);
 
             if(i % width === 0)
             {
@@ -95,17 +97,18 @@ var Memory =
             Memory.game_board.appendChild(cardDiv);
         }
         
-        //Funktion som visar korten och bestämmer om det var en korrekt gissning.
+        //Funktion som visar korten och bestämmer om det var en korrekt gissning. Parameter: klassens position i arrayen och på brädet.
         function tryCard(thisCardNumber)
         {
-            
+            alert(thisCardNumber);
             Memory.clickedCards.push(thisCardNumber);
             
             //Om ett eller inget kort är uppvänt
             if(Memory.clickedCards.length <= 2)
             {
-            var thisCardPicture = document.getElementById(thisCardNumber);
-            thisCardPicture.setAttribute("src","pics/" + Memory.memoryBoard[thisCardNumber] + ".png");
+                var thisCardPicture = document.getElementById(thisCardNumber);
+                var thisCardLink = document.getElementById(thisCardNumber);
+                thisCardPicture.setAttribute("src","pics/" + Memory.memoryBoard[thisCardNumber] + ".png");
             }
             
             
@@ -113,12 +116,28 @@ var Memory =
             if(Memory.clickedCards.length >= 2)
             {
                 
-                if(Memory.memoryBoard[Memory.clickedCards[0]] === Memory.memoryBoard[Memory.clickedCards[1]]);
+                if(Memory.memoryBoard[Memory.clickedCards[0]] == Memory.memoryBoard[Memory.clickedCards[1]]);
                 {
+                    
+                    Memory.correctGuesses++;
+                    Memory.guesses++;
+                    Memory.clickedCards.length = 0;
                     
                 }
                 
+                if(Memory.memoryBoard[Memory.clickedCards[0]] != Memory.memoryBoard[Memory.clickedCards[1]])
+                {
+                    Memory.guesses++;
+                    Memory.clickedCards.length = 0;
+                }
             }
+                
+            //är det inga nedvända kort kvar?
+            if(Memory.correctGuesses == Memory.memoryBoard.length / 2)
+            {
+            }
+                
+            
             
         }
             
