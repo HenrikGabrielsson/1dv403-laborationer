@@ -14,6 +14,11 @@ var Memory =
     //de gissade korten
     clickedCards: [],
     
+    //variabler där element ska sparas
+    cardDiv: null,
+    cardPicture: null,
+    cardLink: null,
+    
     init:function () 
     {
 
@@ -56,6 +61,7 @@ var Memory =
         {
             errorP.innerHTML = null; 
             
+            var form = document.getElementById();
             Memory.createBoard(height, width);
         }
 
@@ -76,74 +82,88 @@ var Memory =
         for(var i = 0; i < Memory.memoryBoard.length; i++)
         {
 
-            var cardDiv = document.createElement("div");
-            cardDiv.setAttribute("class","card");
+            Memory.cardDiv = document.createElement("div");
+            Memory.cardDiv.setAttribute("class","card");
             
-            var cardPicture = document.createElement("img");
-            cardPicture.setAttribute("src","pics/0.png");
-            cardPicture.setAttribute("id",i );
+            Memory.cardPicture = document.createElement("img");
+            Memory.cardPicture.setAttribute("src","pics/0.png");
+            Memory.cardPicture.setAttribute("id",i );
             
-            var cardLink = document.createElement("a");
-            cardLink.setAttribute("class",i );
-            cardLink.addEventListener("click", sendToTryCard(i), false);
+            Memory.cardLink = document.createElement("a");
+            Memory.cardLink.setAttribute("class",i );
+            Memory.cardLink.addEventListener("click", sendToTryCard(i), false);
 
             if(i % width === 0)
             {
-                cardDiv.setAttribute("class","card new_row_card");
+                Memory.cardDiv.setAttribute("class","card new_row_card");
             }
             
-            cardLink.appendChild(cardPicture);
-            cardDiv.appendChild(cardLink);
-            Memory.game_board.appendChild(cardDiv);
+            Memory.cardLink.appendChild(Memory.cardPicture);
+            Memory.cardDiv.appendChild(Memory.cardLink);
+            Memory.game_board.appendChild(Memory.cardDiv);
         }
         
-        //Funktion som visar korten och bestämmer om det var en korrekt gissning. Parameter: klassens position i arrayen och på brädet.
+        //Funktion som visar korten. Parameter: klassens position i arrayen och på brädet.
         function tryCard(thisCardNumber)
         {
-            alert(thisCardNumber);
             Memory.clickedCards.push(thisCardNumber);
             
-            //Om ett eller inget kort är uppvänt
+            //Om ett eller inget kort är uppvänt = vänd upp aktuellt kort
             if(Memory.clickedCards.length <= 2)
             {
                 var thisCardPicture = document.getElementById(thisCardNumber);
-                var thisCardLink = document.getElementById(thisCardNumber);
                 thisCardPicture.setAttribute("src","pics/" + Memory.memoryBoard[thisCardNumber] + ".png");
             }
             
             
             //Om två kort är uppvända...
-            if(Memory.clickedCards.length >= 2)
+            if(Memory.clickedCards.length == 2)
             {
+                //Kolla om det är en korrekt gissning
+                Memory.checkIfCorrect(  Memory.memoryBoard[Memory.clickedCards[0]],    Memory.memoryBoard[Memory.clickedCards[1]]  );
                 
-                if(Memory.memoryBoard[Memory.clickedCards[0]] == Memory.memoryBoard[Memory.clickedCards[1]]);
-                {
-                    
-                    Memory.correctGuesses++;
-                    Memory.guesses++;
-                    Memory.clickedCards.length = 0;
-                    
-                }
-                
-                if(Memory.memoryBoard[Memory.clickedCards[0]] != Memory.memoryBoard[Memory.clickedCards[1]])
-                {
-                    Memory.guesses++;
-                    Memory.clickedCards.length = 0;
-                }
+                //Öka räknaren och glöm de valda korten
+                Memory.guesses++;
+                Memory.clickedCards.length = 0;
             }
                 
             //är det inga nedvända kort kvar?
-            if(Memory.correctGuesses == Memory.memoryBoard.length / 2)
+            if(Memory.correctGuesses == Memory.memoryBoard.length)
             {
+                alert("Grattis");
             }
-                
+
+        }
+            
+            
+    },
+    checkIfCorrect: function(card1, card2)
+    {
+        var picture1;
+        var picture2;
+        
+        if(card1 == card2)
+        {
+            Memory.correctGuesses += 2;
+            
+            //Tar bort länkarna, genom att be parentNoden döda sitt barn...
+            var link1 = document.getElementsByClassName(Memory.clickedCards[0]);
+            link1[0].parentNode.removeChild(link1[0]);
+            var link2 = document.getElementsByClassName(Memory.clickedCards[1]);
+            link2[0].parentNode.removeChild(link2[0]);
             
             
         }
+        else
+        {
+            picture1 = document.getElementById(card1);
+            picture2 = document.getElementById(card2);
             
-                
-            
+            //döljer korten igen efter 1 sekund
+            setTimeout(function(){picture1.src = "pics/0.png";}, 1000);
+            setTimeout(function(){picture2.src = "pics/0.png";}, 1000);
+        }
     }
-};
+}
 
 window.onload = Memory.init;
