@@ -61,7 +61,9 @@ var Memory =
         {
             errorP.innerHTML = null; 
             
-            var form = document.getElementById();
+            var form = document.getElementById("boardSizeForm");
+            
+            document.body.removeChild(form);
             Memory.createBoard(height, width);
         }
 
@@ -108,39 +110,49 @@ var Memory =
         {
             Memory.clickedCards.push(thisCardNumber);
             
-            //Om ett eller inget kort är uppvänt = vänd upp aktuellt kort
-            if(Memory.clickedCards.length <= 2)
-            {
-                var thisCardPicture = document.getElementById(thisCardNumber);
-                thisCardPicture.setAttribute("src","pics/" + Memory.memoryBoard[thisCardNumber] + ".png");
-            }
-            
+            //Vänd upp aktuellt kort
+            var thisCardPicture = document.getElementById(thisCardNumber);
+            thisCardPicture.setAttribute("src","pics/" + Memory.memoryBoard[thisCardNumber] + ".png");
             
             //Om två kort är uppvända...
-            if(Memory.clickedCards.length == 2)
+            if(Memory.clickedCards.length == 2 && Memory.clickedCards[0] != Memory.clickedCards[1])
             {
                 //Kolla om det är en korrekt gissning
                 Memory.checkIfCorrect(  Memory.memoryBoard[Memory.clickedCards[0]],    Memory.memoryBoard[Memory.clickedCards[1]]  );
                 
                 //Öka räknaren och glöm de valda korten
                 Memory.guesses++;
+                document.getElementById("guess_count").innerHTML = "Antal gissningar: "+ Memory.guesses;
                 Memory.clickedCards.length = 0;
+            }
+            
+            //Om användaren klickar på samma kort två gånger
+            else if(Memory.clickedCards[0] == Memory.clickedCards[1])
+            {
+                Memory.clickedCards.pop();
             }
                 
             //är det inga nedvända kort kvar?
             if(Memory.correctGuesses == Memory.memoryBoard.length)
             {
-                alert("Grattis");
+                document.body.removeChild(document.getElementById("game_board"));
+                document.body.removeChild(document.getElementById("guess_count"));
+                document.getElementById("you_won").innerHTML = "Grattis! Du vann efter "+ Memory.guesses +" gissningar!";
+                
             }
 
         }
             
             
     },
+    
+    //kollar om korten är lika eller inte, och gör sedan något
     checkIfCorrect: function(card1, card2)
     {
         var picture1;
         var picture2;
+        
+        
         
         if(card1 == card2)
         {
@@ -156,8 +168,8 @@ var Memory =
         }
         else
         {
-            picture1 = document.getElementById(card1);
-            picture2 = document.getElementById(card2);
+            picture1 = document.getElementById(Memory.clickedCards[0]);
+            picture2 = document.getElementById(Memory.clickedCards[1]);
             
             //döljer korten igen efter 1 sekund
             setTimeout(function(){picture1.src = "pics/0.png";}, 1000);
