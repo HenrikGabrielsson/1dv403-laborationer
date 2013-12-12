@@ -1,0 +1,29 @@
+h1 
+{
+    font-family:arial;
+    color:#555555;
+    font-size:20pt;
+}
+
+form
+{
+    margin:30px auto auto auto;
+    border:1px solid #333333;
+    font-family:arial;
+    color:#333333;
+    width:500px;
+    background-color:#EEEEEE;
+}
+
+input
+{
+    margin-bottom:40px;
+}
+
+button
+{
+    margin-top:20px;
+    width:100px;
+    background-color:#60b9ce;
+}
+
