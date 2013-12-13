@@ -9,18 +9,18 @@
     
     <body>
     
-        <form action="http://voyager.lnu.se/tekinet/kurser/dtt/wp_webbteknik/process_form.php" method="POST">
+        <form action="http://voyager.lnu.se/tekinet/kurser/dtt/wp_webbteknik/process_form.php" method="POST" id="formElement">
         <h1>Fyll i din information</h1>
 
-            <label>Förnamn:<br> </label><input type="text" name="firstName" placeholder="Kalle"><br>
-            <label>Efternamn:<br> </label><input type="text" name="surName" placeholder="Exempel"><br>
+            <label>Förnamn:<br> </label><input type="text" name="firstName" placeholder="Kalle" autofocus><br>
+            <label>Efternamn:<br> </label><input type="text" name="lastName" placeholder="Exempelsson"><br>
             <label>Postnummer:<br> </label><input type="text" name="postNumber" placeholder="991231-9999"><br>
-            <label>E-mail:<br> </label><input type="text" name="eMail" placeholder="KalleExempel@Exempel.se"><br>
+            <label>E-mail:<br> </label><input type="text" name="eMail" placeholder="KalleExempelsson@Exempel.se"><br>
             
             <label>Prismodell:<br> </label><select name="price">
-                <option value="low">Låg</option>
-                <option value="medium">Medel</option>
-                <option value="high">Hög</option>
+                <option value="låg">Låg</option>
+                <option value="medel" selected>Medel</option>
+                <option value="hög" >Hög</option>
             </select><br>
             <button type="submit" >Skicka</button>
         </form>
