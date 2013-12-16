@@ -22,6 +22,7 @@ input
     margin-bottom:40px;
 }
 
+
 button
 {
     margin-top:20px;
@@ -29,7 +30,28 @@ button
     height:40px;
     background-color:#c2e0FF;
     border-radius:15px;
-
-    
     font-weight:bold;
 }
+
+.errorMessage
+{
+    color:red;
+    width:200px;
+    font-size:10pt;
+    float:right;
+    margin-right:100px;
+    margin-top:-2px;
+}
+
+/*Klasser som visar om indata är ok eller inte efter validering*/
+.correct
+{
+    background-color:#77ff77;
+    border:1px solid green;
+}
+.incorrect
+{
+    background-color:#ff7777;
+    border:3px solid red;
+}
+

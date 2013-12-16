@@ -2,41 +2,100 @@
 
 var Validator =
 {
+    //formuläret
+    form: document.getElementById("formElement"),
+    
+    //Input-fälten
+    firstName: document.getElementsByName("firstName")[0],
+    lastName: document.getElementsByName("lastName")[0],
+    postNumber: document.getElementsByName("postNumber")[0],
+    eMail: document.getElementsByName("eMail")[0],
+    selectedPrice: document.getElementsByName("price")[0].selectedIndex,
+    price: document.getElementsByName("price")[0].options,
+    //price[selectedPrice] ger valet från dropdown-menyn
+    
+    //testresultat. true = valid input, false = felaktig input.
+    testFirstName: false,
+    testLastName: false,
+    testPostNumber: false,
+    testEMail: false,
+    
+    
     init: function()
     {
-        var form = document.getElementById("formElement");
-        form.onsubmit = Validator.validate;
+        //Datan valideras när användaren ej längre har fokus på ett fält. 
+        Validator.firstName.addEventListener("blur", function()
+        {
+            Validator.testFirstName = Validator.validate(Validator.firstName, /^[a-zåäö]{1,}(\-[a-zåäö]{1,})?$/i, "Du får inte lämna fältet tomt. Du får bara använda korrekta tecken.");
+        
+        }, false);
+        Validator.lastName.addEventListener("blur", function()
+        {
+            Validator.testLastName = Validator.validate(Validator.lastName, /^[a-zåäö]{1,}((\-|\s)[a-zåäö]{1,})?$/i, "Du får inte lämna fältet tomt. Du får bara använda korrekta tecken.");
+        
+        }, false);     
+        Validator.postNumber.addEventListener("blur", function()
+        {
+            Validator.testPostNumber = Validator.validate(Validator.postNumber, /^[0-9]{5}$/, "Du får inte lämna fältet tomt. Du får inte ge fel format på postnumret.");
+        
+        }, false);
+        Validator.eMail.addEventListener("blur", function()
+        {
+            Validator.testEMail = Validator.validate(Validator.eMail, /^[0-9a-zåäö\-\_\.]{1,64}@[0-9a-zåäö\-\_\.]{1,250}\.[a-zåäö]{1,4}$/i, "Du får inte lämna fältet tomt.Du får inte använda ett icke-godkänt format på mailadressen.");
+        
+        }, false);
+        
+        //Submit        
+        Validator.form.onsubmit = submitForm;
+        
+        //Kollar så alla fält är korrekt ifyllda innan formuläret skickas iväg
+        function submitForm ()
+        {
+            if(Validator.testFirstName && Validator.testLastName && Validator.testPostNumber && Validator.testEMail)
+            {
+                return true;   
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
     },
     
-    validate: function()
+    //funktion som validerar indata från formuläret. Parametrar: (aktuellt inputfält, reguljärt uttryck, felmeddelande)  
+    validate: function(input, regex, error)
     {
-        //hämtar de olika fälten som ska testas
-        var firstName = document.getElementsByName("firstName")[0].value;
-        var lastName = document.getElementsByName("lastName")[0].value;
-        var postNumber = document.getElementsByName("postNumber")[0].value;
-        var eMail = document.getElementsByName("eMail")[0].value;
-        var selectedPrice = document.getElementsByName("price")[0].selectedIndex;
-        var price = document.getElementsByName("price")[0].options;
-        //price[selectedPrice] ger valet från dropdown-menyn
         
-        //här testas de olika textfälten.
-        var testFirstName = (firstName.match(/^[a-zåäö]{1,}(\-[a-zåäö]{1,})?$/i));
-        var testLastName = (lastName.match(/^[a-zåäö]{1,}((\-|\s)[a-zåäö]{1,})?$/i));
-        var testPostNumber = (postNumber.match(/^[0-9]{5}$/));
-        var testEMail = (eMail.match(/^[a-zåäö\-\_\.]{1,64}@[a-zåäö\-\_\.]{1,250}\.[a-zåäö]{2,4}$/i));
-        
-        //så länge inget "test" tilldelas true:
-        if(testFirstName && testLastName && testPostNumber && testEMail)
+        if(input.nextSibling.getAttribute("class") == "errorMessage " + input.name)
         {
+            var removeThis = input.nextSibling;
+            Validator.form.removeChild(removeThis);
+        }
+        
+        if(input.value.match(regex))
+        {
+            
+            input.setAttribute("class", "correct");
+            
             return true;
         }
         
         else
         {
+            input.setAttribute("class", "incorrect");
+            
+            //skapar och lägger in ett felmeddelande
+            var errorMessage = document.createElement("p");
+            errorMessage.setAttribute("class","errorMessage " + input.name );
+            
+            var messageText = document.createTextNode(error);
+            errorMessage.appendChild(messageText);
+            
+            Validator.form.insertBefore(errorMessage, input.nextSibling);
+            
             return false;
         }
-        
-
     }
 };
 
