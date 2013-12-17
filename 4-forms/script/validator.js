@@ -12,13 +12,14 @@ var Validator =
     eMail: document.getElementsByName("eMail")[0],
     selectedPrice: document.getElementsByName("price")[0].selectedIndex,
     price: document.getElementsByName("price")[0].options,
-    //price[selectedPrice] ger valet från dropdown-menyn
+    //price[selectedPrice].value ger valet från dropdown-menyn
     
     //testresultat. true = valid input, false = felaktig input.
     testFirstName: false,
     testLastName: false,
     testPostNumber: false,
     testEMail: false,
+    
     
     
     init: function()
@@ -116,24 +117,70 @@ var Validator =
     //funktion som skapar ett "fönster" för att kolla ifall användaren verkligen känner för att submitta informationen
     confirmSubmit: function ()
     {
+        
         //ruta som täcker formuläret tills användaren har klickat på en knapp i det nya fönstret.
         var blackScreen = document.createElement("div");
         blackScreen.setAttribute("class","faded");
         
-        //Confirm-fönstret
+        //Confirm-fönstret med child-element
         var confirmWindow = document.createElement("div");
         confirmWindow.setAttribute("class","confirmWindow");  
+        
+        
+        
+        //lista med uppgifterna skapas
+        var list = document.createElement("ul");
+        
+        var liFirstName = document.createElement("li");
+        var liLastName = document.createElement("li");
+        var liPostNumber = document.createElement("li");
+        var liEMail = document.createElement("li");
+        var liPrice = document.createElement("li");
+        
+        var textFirstName = document.createTextNode("Förnamn: "+ Validator.firstName);
+        var textLastName = document.createTextNode("Efternamn: "+ Validator.lastName);
+        var textPostNumber = document.createTextNode("Postnummer: "+Validator.postnumber);
+        var textEMail = document.createTextNode("E-mail: " +Validator.eMail);
+        var textPrice = document.createTextNode("Prismodell: " +Validator.price[Validator.selectedPrice].value);
+        
+
+        liFirstName.appendChild(document.createTextNode("Förnamn: "+ Validator.firstName.value));
+        liLastName.appendChild(document.createTextNode("Efternamn: "+ Validator.lastName.value));
+        liPostNumber.appendChild(document.createTextNode("Postnummer "+ Validator.postNumber.value));        
+        liEMail.appendChild(document.createTextNode("E-mail: " +Validator.eMail.value));
+        liPrice.appendChild(document.createTextNode("Prismodell: " +Validator.price[Validator.selectedPrice].value));
+    
+        list.appendChild(liFirstName);
+        list.appendChild(liLastName);
+        list.appendChild(liPostNumber);
+        list.appendChild(liEMail);
+        list.appendChild(liPrice);
+        
+        
+     
         
         var cancelButton = document.createElement("button");
         cancelButton.setAttribute("class","cancelButton");
         cancelButton.appendChild(document.createTextNode("Avbryt"))
+        cancelButton.addEventListener("click",function()
+        {
+            document.body.removeChild(blackScreen);
+            document.body.removeChild(confirmWindow);
+        },false);
         
         var confirmButton = document.createElement("button");
-        confirmButton.appendChild(document.createTextNode("Slutför köpet"))
+        confirmButton.setAttribute("class","confirmButton");
+        confirmButton.appendChild(document.createTextNode("Slutför köpet"));
+        confirmButton.addEventListener("click", function()
+            {
+                Validator.form.submit();
+            }
+        ,false)
         
         var question = document.createElement("p");
-        question.appendChild(document.createTextNode("Vill du slutföra köpet?"))        
+        question.appendChild(document.createTextNode("Vill du slutföra köpet?"));        
        
+        confirmWindow.appendChild(list);
         confirmWindow.appendChild(question);
         confirmWindow.appendChild(cancelButton);
         confirmWindow.appendChild(confirmButton)
