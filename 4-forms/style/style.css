@@ -87,16 +87,39 @@ button
     z-index:1000;
     background-color:#EEEEEE;
     margin:auto;
-    height:400px;
-    width:40%;
+    height:380px;
+    width:30%;
     
     position:fixed;
-    left:30%;
+    left:35%;
     top:100px;
+    
+    font-family:arial;
+    font-size:12pt;
+    
 }
 
-.noActions
+.confirmWindow ul
 {
+    margin-left:-40px;    
+}
+
+.confirmWindow li
+{
+    list-style-type:none;
+    margin-top:20px;
+    margin-left:3%;
+}
+
+.confirmWindow p
+{
+    margin-left:3%;
+    margin-top:40px;
+}
+
+.confirmWindow button
+{
+    margin-left:3%;
 }
 
 

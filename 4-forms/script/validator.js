@@ -56,7 +56,7 @@ var Validator =
         //Kollar så alla fält är korrekt ifyllda innan formuläret skickas iväg
         function submitForm ()
         {
-            if(Validator.testFirstName && Validator.testLastName && Validator.testPostNumber && Validator.testEMail)
+            if(true)//(Validator.testFirstName && Validator.testLastName && Validator.testPostNumber && Validator.testEMail)
             {
                 //Anropar en funktion som kollar så att användaren verkligen vill fortsätta
                 return Validator.confirmSubmit();   
