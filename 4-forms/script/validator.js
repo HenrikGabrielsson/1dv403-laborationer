@@ -26,22 +26,26 @@ var Validator =
         //Datan valideras när användaren ej längre har fokus på ett fält. 
         Validator.firstName.addEventListener("blur", function()
         {
-            Validator.testFirstName = Validator.validate(Validator.firstName, /^[a-zåäö]{1,}(\-[a-zåäö]{1,})?$/i, "Du får inte lämna fältet tomt. Du får bara använda korrekta tecken.");
+            Validator.testFirstName = Validator.validate(Validator.firstName, /^[a-zåäö]{1,}(\-[a-zåäö]{1,})?$/i,
+            "Du får inte lämna fältet tomt. Du får bara använda korrekta tecken.");
         
         }, false);
         Validator.lastName.addEventListener("blur", function()
         {
-            Validator.testLastName = Validator.validate(Validator.lastName, /^[a-zåäö]{1,}((\-|\s)[a-zåäö]{1,})?$/i, "Du får inte lämna fältet tomt. Du får bara använda korrekta tecken.");
+            Validator.testLastName = Validator.validate(Validator.lastName, /^[a-zåäö]{1,}((\-|\s)[a-zåäö]{1,})?$/i,
+            "Du får inte lämna fältet tomt. Du får bara använda korrekta tecken.");
         
         }, false);     
         Validator.postNumber.addEventListener("blur", function()
         {
-            Validator.testPostNumber = Validator.validate(Validator.postNumber, /^[0-9]{5}$/, "Du får inte lämna fältet tomt. Du får inte ge fel format på postnumret.");
+            Validator.testPostNumber = Validator.validate(Validator.postNumber, /^(SE(\s?))?[0-9]{3}(\s|\-)?[0-9]{2}$/i
+            , "Du får inte lämna fältet tomt. Du får inte ge fel format på postnumret.");
         
         }, false);
         Validator.eMail.addEventListener("blur", function()
         {
-            Validator.testEMail = Validator.validate(Validator.eMail, /^[0-9a-zåäö\-\_\.]{1,64}@[0-9a-zåäö\-\_\.]{1,250}\.[a-zåäö]{1,4}$/i, "Du får inte lämna fältet tomt.Du får inte använda ett icke-godkänt format på mailadressen.");
+            Validator.testEMail = Validator.validate(Validator.eMail, /^[0-9a-zåäö\-\_\.]{1,64}@[0-9a-zåäö\-\_\.]{1,250}\.[a-zåäö]{1,4}$/i,
+            "Du får inte lämna fältet tomt.Du får inte använda ett icke-godkänt format på mailadressen.");
         
         }, false);
         
@@ -51,6 +55,7 @@ var Validator =
         //Kollar så alla fält är korrekt ifyllda innan formuläret skickas iväg
         function submitForm ()
         {
+            window.open("http://www.w3schools.com");
             if(Validator.testFirstName && Validator.testLastName && Validator.testPostNumber && Validator.testEMail)
             {
                 return true;   
@@ -67,20 +72,30 @@ var Validator =
     validate: function(input, regex, error)
     {
         
+        //Om ett fält redan ar ett felmeddelande så tas det bort
         if(input.nextSibling.getAttribute("class") == "errorMessage " + input.name)
         {
             var removeThis = input.nextSibling;
             Validator.form.removeChild(removeThis);
         }
         
+        //Om valid data skickas med
         if(input.value.match(regex))
         {
             
             input.setAttribute("class", "correct");
             
+            //Om det är postnummer som har godkänt men ej önskat format
+            if(input.name == "postNumber" && null === input.value.match(/^[0-9]{5}$/))
+            {
+                //allt som inte är siffror ersätts med  tomrum
+                input.value = input.value.replace(/[^0-9]/g,"");
+            }
+            
             return true;
         }
         
+        //annars...
         else
         {
             input.setAttribute("class", "incorrect");
