@@ -55,10 +55,10 @@ var Validator =
         //Kollar så alla fält är korrekt ifyllda innan formuläret skickas iväg
         function submitForm ()
         {
-            window.open("http://www.w3schools.com");
             if(Validator.testFirstName && Validator.testLastName && Validator.testPostNumber && Validator.testEMail)
             {
-                return true;   
+                //Anropar en funktion som kollar så att användaren verkligen vill fortsätta
+                return Validator.confirmSubmit();   
             }
             else
             {
@@ -111,6 +111,36 @@ var Validator =
             
             return false;
         }
+    },
+    
+    //funktion som skapar ett "fönster" för att kolla ifall användaren verkligen känner för att submitta informationen
+    confirmSubmit: function ()
+    {
+        //ruta som täcker formuläret tills användaren har klickat på en knapp i det nya fönstret.
+        var blackScreen = document.createElement("div");
+        blackScreen.setAttribute("class","faded");
+        
+        //Confirm-fönstret
+        var confirmWindow = document.createElement("div");
+        confirmWindow.setAttribute("class","confirmWindow");  
+        
+        var cancelButton = document.createElement("button");
+        cancelButton.setAttribute("class","cancelButton");
+        cancelButton.appendChild(document.createTextNode("Avbryt"))
+        
+        var confirmButton = document.createElement("button");
+        confirmButton.appendChild(document.createTextNode("Slutför köpet"))
+        
+        var question = document.createElement("p");
+        question.appendChild(document.createTextNode("Vill du slutföra köpet?"))        
+       
+        confirmWindow.appendChild(question);
+        confirmWindow.appendChild(cancelButton);
+        confirmWindow.appendChild(confirmButton)
+        
+        document.body.appendChild(blackScreen)
+        document.body.appendChild(confirmWindow);
+        return false;
     }
 };
 

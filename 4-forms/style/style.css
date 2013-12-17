@@ -1,3 +1,13 @@
+html
+{
+    height:100%;
+}
+
+body
+{
+    height:100%;
+}
+
 h1 
 {
     font-family:arial;
@@ -54,4 +64,44 @@ button
     background-color:#ff7777;
     border:3px solid red;
 }
+
+
+/*Klasser för när ett meddelande visas och formuläret försvinner in i en dimma*/
+.faded
+{
+    background-color:black;
+    width:100%;
+    height:100%;
+    
+    position:fixed;
+    left:0;
+    top:0;
+    z-index:999;
+
+    opacity:0.50;
+    transition:1s;
+}
+
+.confirmWindow
+{
+    z-index:1000;
+    background-color:#EEEEEE;
+    margin:auto;
+    height:400px;
+    width:40%;
+    
+    position:fixed;
+    left:30%;
+    top:100px;
+}
+
+.noActions
+{
+}
+
+
+
+
+
+
 
