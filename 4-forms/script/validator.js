@@ -10,9 +10,8 @@ var Validator =
     lastName: document.getElementsByName("lastName")[0],
     postNumber: document.getElementsByName("postNumber")[0],
     eMail: document.getElementsByName("eMail")[0],
-    selectedPrice: document.getElementsByName("price")[0].selectedIndex,
-    price: document.getElementsByName("price")[0].options,
-    //price[selectedPrice].value ger valet från dropdown-menyn
+    selectedPrice: document.getElementsByName("price")[0],
+
     
     //testresultat. true = valid input, false = felaktig input.
     testFirstName: false,
@@ -56,7 +55,7 @@ var Validator =
         //Kollar så alla fält är korrekt ifyllda innan formuläret skickas iväg
         function submitForm ()
         {
-            if(true)//(Validator.testFirstName && Validator.testLastName && Validator.testPostNumber && Validator.testEMail)
+            if(Validator.testFirstName && Validator.testLastName && Validator.testPostNumber && Validator.testEMail)//(Validator.testFirstName && Validator.testLastName && Validator.testPostNumber && Validator.testEMail)
             {
                 //Anropar en funktion som kollar så att användaren verkligen vill fortsätta
                 return Validator.confirmSubmit();   
@@ -137,18 +136,12 @@ var Validator =
         var liEMail = document.createElement("li");
         var liPrice = document.createElement("li");
         
-        var textFirstName = document.createTextNode("Förnamn: "+ Validator.firstName);
-        var textLastName = document.createTextNode("Efternamn: "+ Validator.lastName);
-        var textPostNumber = document.createTextNode("Postnummer: "+Validator.postnumber);
-        var textEMail = document.createTextNode("E-mail: " +Validator.eMail);
-        var textPrice = document.createTextNode("Prismodell: " +Validator.price[Validator.selectedPrice].value);
-        
 
         liFirstName.appendChild(document.createTextNode("Förnamn: "+ Validator.firstName.value));
         liLastName.appendChild(document.createTextNode("Efternamn: "+ Validator.lastName.value));
         liPostNumber.appendChild(document.createTextNode("Postnummer "+ Validator.postNumber.value));        
         liEMail.appendChild(document.createTextNode("E-mail: " +Validator.eMail.value));
-        liPrice.appendChild(document.createTextNode("Prismodell: " +Validator.price[Validator.selectedPrice].value));
+        liPrice.appendChild(document.createTextNode("Prismodell: " + Validator.selectedPrice.options[Validator.selectedPrice.selectedIndex].text));
     
         list.appendChild(liFirstName);
         list.appendChild(liLastName);
@@ -161,7 +154,7 @@ var Validator =
         
         var cancelButton = document.createElement("button");
         cancelButton.setAttribute("class","cancelButton");
-        cancelButton.appendChild(document.createTextNode("Avbryt"))
+        cancelButton.appendChild(document.createTextNode("Avbryt"));
         cancelButton.addEventListener("click",function()
         {
             document.body.removeChild(blackScreen);
