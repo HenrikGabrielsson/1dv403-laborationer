@@ -1,0 +1,34 @@
+html, body
+{
+    height:100%;
+}
+
+body
+{
+    background-image:url('background.jpg');
+    background-repeat:no-repeat;
+    background-color:#444444;
+    background-position: center center;
+}    
+
+.window
+{
+    border:1px solid black;
+    height:200px;
+    width:300px;
+}
+
+#taskbar
+{
+    width:100%;
+    height:40px;
+    position:fixed;
+    bottom:0;
+    
+    background: -webkit-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1));
+    background: -o-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1);
+    background: -moz-linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1);
+    background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,1);
+    
+    border-top:1px solid #666666;
+}
