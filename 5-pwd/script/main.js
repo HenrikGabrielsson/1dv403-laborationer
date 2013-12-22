@@ -2,15 +2,25 @@
 
 var main =  
 {
+    //get the icons from taskbar
+    imageIcon: document.getElementById("imageIcon"),
+    rssIcon: document.getElementById("rssIcon"),
+    memoryIcon: document.getElementById("memoryIcon"),
+
     init: function ()
     {
-        /*
-        var hej = new PWD.window.Window();
         var desktop = document.getElementById("desktop");
-        desktop.appendChild(hej.window);
-        var hej2 = new PWD.window.Window();
-        desktop.appendChild(hej2.window);
-        */
+        
+           
+        //onclick events for taskbar
+        main.imageIcon.onclick = function(){
+            
+            var myWindow = new PWD.Window();
+            desktop.appendChild(myWindow.window); 
+            main.windows.push(myWindow);
+        }
+        
+        
     }
 };
 
