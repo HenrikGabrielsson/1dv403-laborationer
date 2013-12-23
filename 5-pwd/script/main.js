@@ -15,7 +15,7 @@ var main =
         //onclick events for taskbar
         main.imageIcon.onclick = function(){
             
-            var myWindow = new PWD.Window();
+            var myWindow = new PWD.Window(300, 200);
             desktop.appendChild(myWindow.window); 
             main.windows.push(myWindow);
         }
