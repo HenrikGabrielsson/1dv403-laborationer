@@ -9,15 +9,12 @@ var main =
 
     init: function ()
     {
-        var desktop = document.getElementById("desktop");
-        
            
         //onclick events for taskbar
         main.imageIcon.onclick = function(){
             
-            var myWindow = new PWD.Window(300, 200);
-            desktop.appendChild(myWindow.window); 
-            main.windows.push(myWindow);
+            var myWindow = new PWD.ImageGallery(300, 200);
+            myWindow.display();
         }
         
         
