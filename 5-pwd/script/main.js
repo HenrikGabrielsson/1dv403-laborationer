@@ -6,6 +6,7 @@ var main =
     imageIcon: document.getElementById("imageIcon"),
     rssIcon: document.getElementById("rssIcon"),
     memoryIcon: document.getElementById("memoryIcon"),
+    windows:[],
 
     init: function ()
     {
@@ -14,9 +15,16 @@ var main =
         main.imageIcon.onclick = function(){
             
             var myWindow = new PWD.ImageGallery(300, 200);
-            myWindow.display();
+            main.windows.push(myWindow);
+            
+            var newWindow = myWindow.createHTML();
+            
+            //add the new window to the desktop
+            var desktop = document.getElementById("desktop");
+            desktop.appendChild(newWindow);
+
+
         }
-        
         
     }
 };
