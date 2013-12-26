@@ -17,6 +17,8 @@ body
     
     border:1px solid #BBBBBB;
     border-radius: 10px;
+    
+    position:absolute;
 }
 
 .window img
@@ -26,6 +28,21 @@ body
     margin: 2px 2px 0 0 ;
     
     float:right;
+}
+
+.window .windowIcon
+{
+    margin-left:5px ;
+    float:left;
+}
+
+.window p
+{
+    font-family:"Century Gothic", arial;
+    font-size:10pt;
+    color:white;
+    margin:4px 0 -12px 3px;
+    float:left;
 }
 
 .windowContent
@@ -42,6 +59,7 @@ body
     float:left;
     
 }
+
 
 
 #taskbar

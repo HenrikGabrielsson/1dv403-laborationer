@@ -6,13 +6,14 @@ var PWD = PWD || {};
 //constructor
 PWD.Window = function(width, height) 
 {
+    
     this.width = width;
     this.height = height;
 
 }
 
 //Method that creates a HTML-div with the properties and functions of a window
-PWD.Window.prototype.createHTML = function()
+PWD.Window.prototype.createBasicWindow = function()
     {
     this.window = document.createElement("div");
 
@@ -24,6 +25,12 @@ PWD.Window.prototype.createHTML = function()
     var thisWindow = this.window;
     var thisWidth = this.width;
     var thisHeight = this.height;
+
+
+    //icon and name in upper, left corner
+    this.windowIcon = document.createElement("img");
+    this.windowIcon.setAttribute("class", "windowIcon");
+    this.windowTitle = document.createElement("p");
 
     //Div for the content
     this.windowContent = document.createElement("div");
@@ -74,6 +81,8 @@ PWD.Window.prototype.createHTML = function()
     
     
     //add all elements to window
+    this.window.appendChild(this.windowIcon);
+    this.window.appendChild(this.windowTitle);
     this.window.appendChild(this.closeButton);
     this.window.appendChild(this.resizeButton);
     this.window.appendChild(this.windowContent);
@@ -81,15 +90,25 @@ PWD.Window.prototype.createHTML = function()
     return this.window;
 };
 
-PWD.Window.prototype.derp = function()
-{
-    alert();
-}
-
 //The Image gallery(inherits from Window)
 PWD.ImageGallery = function(width, height) 
 {
-    PWD.ImageGallery.prototype = new PWD.Window(width, height);
-    PWD.ImageGallery.prototype.constructor = PWD.ImageGallery;
+    //set width and height from WIndow-class
+    PWD.Window.call(this, width, height);
+
+};
+PWD.ImageGallery.prototype = new PWD.Window;
+
+
+PWD.ImageGallery.prototype.createImageGalleryWindow = function()
+{
+    //call function in superclass to create a basic window
+    var returnWindow = this.createBasicWindow();
     
+    this.windowIcon.setAttribute("src","pics/image.png");
+    this.windowTitle.appendChild(document.createTextNode("Image Gallery"));
+    
+    return returnWindow;
 }
+
+

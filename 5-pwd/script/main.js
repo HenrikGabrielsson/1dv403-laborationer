@@ -17,12 +17,13 @@ var main =
             var myWindow = new PWD.ImageGallery(300, 200);
             main.windows.push(myWindow);
             
-            var newWindow = myWindow.createHTML();
+            //create html elements that builds the window
+            var newWindow = myWindow.createImageGalleryWindow();
             
             //add the new window to the desktop
             var desktop = document.getElementById("desktop");
             desktop.appendChild(newWindow);
-
+            
 
         }
         
