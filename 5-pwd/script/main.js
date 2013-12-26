@@ -7,6 +7,7 @@ var main =
     rssIcon: document.getElementById("rssIcon"),
     memoryIcon: document.getElementById("memoryIcon"),
     windows:[],
+    desktop:document.getElementById("desktop"),
 
     init: function ()
     {
@@ -14,15 +15,16 @@ var main =
         //onclick events for taskbar
         main.imageIcon.onclick = function(){
             
-            var myWindow = new PWD.ImageGallery(300, 200);
+            
+            //create new object
+            var myWindow = new PWD.ImageGallery(300, 200, main.windows.length );
             main.windows.push(myWindow);
             
             //create html elements that builds the window
             var newWindow = myWindow.createImageGalleryWindow();
             
             //add the new window to the desktop
-            var desktop = document.getElementById("desktop");
-            desktop.appendChild(newWindow);
+            main.desktop.appendChild(newWindow);
             
 
         }

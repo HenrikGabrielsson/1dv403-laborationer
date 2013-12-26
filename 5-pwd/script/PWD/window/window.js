@@ -4,23 +4,37 @@ var PWD = PWD || {};
 
 
 //constructor
-PWD.Window = function(width, height) 
+PWD.Window = function(width, height, index) 
 {
     
     this.width = width;
     this.height = height;
+    this.index = index;
 
-}
+};
+
+PWD.Window.staticIndex = 0;
 
 //Method that creates a HTML-div with the properties and functions of a window
 PWD.Window.prototype.createBasicWindow = function()
     {
     this.window = document.createElement("div");
 
-
+    //some style for window
     this.window.setAttribute("class", "window");
     this.window.style.width = this.width+"px";
     this.window.style.height = this.height+"px";
+    this.window.style.top = this.index*40+"px";
+    this.window.style.left = this.index*20+"px";
+    this.window.style.zIndex = PWD.Window.staticIndex++; 
+    
+    //allows user to focus on window
+    this.window.addEventListener("click", function()
+    {
+        thisWindow.style.zIndex = PWD.Window.staticIndex++;
+        
+    },false);
+    
     
     var thisWindow = this.window;
     var thisWidth = this.width;
@@ -91,10 +105,10 @@ PWD.Window.prototype.createBasicWindow = function()
 };
 
 //The Image gallery(inherits from Window)
-PWD.ImageGallery = function(width, height) 
+PWD.ImageGallery = function(width, height, positiontop, positionleft) 
 {
     //set width and height from WIndow-class
-    PWD.Window.call(this, width, height);
+    PWD.Window.call(this, width, height, positiontop, positionleft);
 
 };
 PWD.ImageGallery.prototype = new PWD.Window;
@@ -108,7 +122,38 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
     this.windowIcon.setAttribute("src","pics/image.png");
     this.windowTitle.appendChild(document.createTextNode("Image Gallery"));
     
+    //gets images and  uses anonymous function to get the returned data when everything has loaded
+    this.getImagesFromServer(function(data){
+        alert(JSON.parse(data))
+    });
+    
     return returnWindow;
 }
 
+//function that gets images from a remote server with ajax
+PWD.ImageGallery.prototype.getImagesFromServer = function(callback)
+{
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function()
+    {
+        //when completely loaded
+        if(request.readyState === 4)
+        {
+            //checking for errors
+            if(request.status >= 200 && request.status < 300 || request.status === 304)
+            {
+                callback(request.responseText);
+            }
+            else
+            {
+                console.log("nåt gick fel vid inläsningen av bilderna");
+            }
+            
+        }
+    };
+    request.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
+    request.send(null);
+    
+}
 
