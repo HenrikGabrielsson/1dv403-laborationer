@@ -33,7 +33,7 @@ PWD.Window.prototype.createBasicWindow = function()
     {
         thisWindow.style.zIndex = PWD.Window.staticIndex++;
         
-    },false);
+    },true);
     
     
     var thisWindow = this.window;
@@ -140,6 +140,7 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
         {
             var imageViewer = new PWD.ImageViewer(i.width, i.height, main.windows.length, i.URL);
             main.windows.push(imageViewer);
+            imageViewer.createImageViewerWindow();
         };
 
         //every image object
@@ -171,8 +172,6 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
         }
         
     });
-    
-    
     
     return returnWindow;
 }
@@ -211,6 +210,18 @@ PWD.ImageViewer = function(width, height, index, URL)
     //set width and height from WIndow-class
     PWD.Window.call(this, width, height, index);
     this.URL = URL;
-    alert(this.URL);
 };
 PWD.ImageViewer.prototype = new PWD.Window;
+
+PWD.ImageViewer.prototype.createImageViewerWindow = function()
+{
+    var newWindow = this.createBasicWindow();
+    
+    var image = document.createElement("img");
+    image.setAttribute("src", this.URL);
+    
+    this.windowContent.appendChild(image);
+    main.desktop.appendChild(newWindow);
+    
+    return newWindow;
+}
