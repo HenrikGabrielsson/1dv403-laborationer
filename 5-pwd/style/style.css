@@ -14,8 +14,7 @@ body
 .window
 {
     background-color:rgba(25,25,25,0.6);
-    
-    border:1px solid #BBBBBB;
+ 
     border-radius: 10px;
     
     position:absolute;

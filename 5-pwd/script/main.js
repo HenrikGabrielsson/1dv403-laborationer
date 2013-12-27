@@ -17,7 +17,7 @@ var main =
             
             
             //create new object
-            var myWindow = new PWD.ImageGallery(300, 200, main.windows.length );
+            var myWindow = new PWD.ImageGallery(500, 400, main.windows.length );
             main.windows.push(myWindow);
             
             //create html elements that builds the window

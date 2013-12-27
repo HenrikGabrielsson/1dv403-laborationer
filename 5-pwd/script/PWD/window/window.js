@@ -39,7 +39,7 @@ PWD.Window.prototype.createBasicWindow = function()
     var thisWindow = this.window;
     var thisWidth = this.width;
     var thisHeight = this.height;
-
+    var thisIndex = this.index;
 
     //icon and name in upper, left corner
     this.windowIcon = document.createElement("img");
@@ -75,6 +75,8 @@ PWD.Window.prototype.createBasicWindow = function()
         {
             thisWindow.style.height ="95%";
             thisWindow.style.width = "100%";
+            thisWindow.style.top = 0;
+            thisWindow.style.left = 0;
 
             thisResizeButtonImage.setAttribute("src", "pics/resize2.png");
         }
@@ -84,7 +86,9 @@ PWD.Window.prototype.createBasicWindow = function()
         {   
             thisWindow.style.width = thisWidth+"px";
             thisWindow.style.height = thisHeight+"px";
-                
+            thisWindow.style.top = thisIndex*40+"px";
+            thisWindow.style.left = thisIndex*20+"px";
+            
             thisResizeButtonImage.setAttribute("src", "pics/resize.png");
         }
     }, false);
@@ -107,10 +111,10 @@ PWD.Window.prototype.createBasicWindow = function()
 };
 
 //The Image gallery(inherits from Window)
-PWD.ImageGallery = function(width, height, positiontop, positionleft) 
+PWD.ImageGallery = function(width, height, index) 
 {
     //set width and height from WIndow-class
-    PWD.Window.call(this, width, height, positiontop, positionleft);
+    PWD.Window.call(this, width, height, index);
 
 };
 PWD.ImageGallery.prototype = new PWD.Window;
@@ -131,10 +135,28 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
         
         var images =JSON.parse(data);
 
+        //function that displays clicked image in it's own window
+        function displayImage (i)
+        {
+            var imageViewer = new PWD.ImageViewer(i.width, i.height, main.windows.length, i.URL);
+            main.windows.push(imageViewer);
+        };
+
         //every image object
         for(var i = 0;i < images.length ;i++)
         {
             //create elements for the pcitures
+            var thumbnailLink = document.createElement("a");
+            thumbnailLink.setAttribute("href","#");
+            thumbnailLink.addEventListener("click", function(i) 
+            {
+                return function()
+                {
+                    displayImage(images[i])    
+                }
+                
+            }(i),false);
+            
             var thumbnailDiv = document.createElement("div");
             thumbnailDiv.setAttribute("class","ThumbnailDiv");
             
@@ -144,7 +166,8 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
             thumbnail.setAttribute("width",images[i].thumbWidth)
             
             thumbnailDiv.appendChild(thumbnail);
-            windowContent.appendChild(thumbnailDiv);
+            thumbnailLink.appendChild(thumbnailDiv);
+            windowContent.appendChild(thumbnailLink);
         }
         
     });
@@ -181,3 +204,13 @@ PWD.ImageGallery.prototype.getImagesFromServer = function(callback)
     
 }
 
+
+//The Image Viewer(inherits from Window) shows a single large picture
+PWD.ImageViewer = function(width, height, index, URL) 
+{
+    //set width and height from WIndow-class
+    PWD.Window.call(this, width, height, index);
+    this.URL = URL;
+    alert(this.URL);
+};
+PWD.ImageViewer.prototype = new PWD.Window;
