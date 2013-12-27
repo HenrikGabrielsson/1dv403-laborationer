@@ -60,6 +60,7 @@ PWD.Window.prototype.createBasicWindow = function()
     this.closeButtonImage = document.createElement("img");
     this.closeButtonImage.setAttribute("src", "pics/close.png");
     this.closeButtonImage.setAttribute("alt", "Close window");
+    this.closeButtonImage.setAttribute("class","windowButton");
     this.closeButton.appendChild(this.closeButtonImage);
     
     
@@ -90,6 +91,7 @@ PWD.Window.prototype.createBasicWindow = function()
     this.resizeButtonImage = document.createElement("img");
     this.resizeButtonImage.setAttribute("src", "pics/resize.png");
     this.resizeButtonImage.setAttribute("alt", "Resize window");
+    this.resizeButtonImage.setAttribute("class","windowButton");
     this.resizeButton.appendChild(this.resizeButtonImage);
     var thisResizeButtonImage = this.resizeButtonImage;
     
@@ -122,10 +124,32 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
     this.windowIcon.setAttribute("src","pics/image.png");
     this.windowTitle.appendChild(document.createTextNode("Image Gallery"));
     
+    var windowContent = this.windowContent;
+    
     //gets images and  uses anonymous function to get the returned data when everything has loaded
     this.getImagesFromServer(function(data){
-        alert(JSON.parse(data))
+        
+        var images =JSON.parse(data);
+
+        //every image object
+        for(var i = 0;i < images.length ;i++)
+        {
+            //create elements for the pcitures
+            var thumbnailDiv = document.createElement("div");
+            thumbnailDiv.setAttribute("class","ThumbnailDiv");
+            
+            var thumbnail = document.createElement("img");
+            thumbnail.setAttribute("src",images[i].thumbURL);
+            thumbnail.setAttribute("height",images[i].thumbHeight)
+            thumbnail.setAttribute("width",images[i].thumbWidth)
+            
+            thumbnailDiv.appendChild(thumbnail);
+            windowContent.appendChild(thumbnailDiv);
+        }
+        
     });
+    
+    
     
     return returnWindow;
 }

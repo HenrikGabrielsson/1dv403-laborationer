@@ -21,7 +21,8 @@ body
     position:absolute;
 }
 
-.window img
+
+.windowButton
 {
     width:20px;
     height:20px;
@@ -34,6 +35,9 @@ body
 {
     margin-left:5px ;
     float:left;
+    width:20px;
+    height:20px;
+    
 }
 
 .window p
@@ -57,9 +61,26 @@ body
     
     
     float:left;
-    
+    overflow:auto;   
 }
 
+.thumbnailDiv
+{
+    height:60px;
+    width:90px;
+    background-color:#EEEEEE;
+    border:1px solid #DDDDDD;
+    float:left;    
+
+    padding-top:5px;
+    margin:5px;
+}
+
+.thumbnailDiv img
+{
+    display:block;
+    margin:auto;
+}
 
 
 #taskbar
