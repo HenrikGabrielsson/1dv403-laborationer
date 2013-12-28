@@ -131,7 +131,20 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
     var windowContent = this.windowContent;
     
     //gets images and  uses anonymous function to get the returned data when everything has loaded
-    this.getImagesFromServer(function(data){
+    this.getImagesFromServer(function(isLoading,data){
+        
+        //if loading is not finished
+        if (isLoading)
+        {
+            windowContent.style.backgroundImage ="url('pics/loading.gif')";
+            windowContent.style.backgroundRepeat ="no-repeat";
+            windowContent.style.backgroundPosition ="center center";
+            
+        }
+        else
+        {
+            windowContent.style.background = "white";
+        }
         
         var images =JSON.parse(data);
 
@@ -189,14 +202,19 @@ PWD.ImageGallery.prototype.getImagesFromServer = function(callback)
             //checking for errors
             if(request.status >= 200 && request.status < 300 || request.status === 304)
             {
-                callback(request.responseText);
+                callback(false,request.responseText);
             }
             else
             {
                 console.log("nåt gick fel vid inläsningen av bilderna");
             }
-            
         }
+        
+        else if(request.readyState === 1)
+        {
+            callback(true)    
+        }
+
     };
     request.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
     request.send(null);
@@ -208,13 +226,14 @@ PWD.ImageGallery.prototype.getImagesFromServer = function(callback)
 PWD.ImageViewer = function(width, height, index, URL) 
 {
     //set width and height from WIndow-class
-    PWD.Window.call(this, width, height, index);
+    PWD.Window.call(this, width*1.10, height*1.20, index);
     this.URL = URL;
 };
 PWD.ImageViewer.prototype = new PWD.Window;
 
 PWD.ImageViewer.prototype.createImageViewerWindow = function()
 {
+    
     var newWindow = this.createBasicWindow();
     
     var image = document.createElement("img");
