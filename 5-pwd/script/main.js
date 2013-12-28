@@ -6,7 +6,7 @@ var main =
     imageIcon: document.getElementById("imageIcon"),
     rssIcon: document.getElementById("rssIcon"),
     memoryIcon: document.getElementById("memoryIcon"),
-    windows:[],
+    windows:[], //let's save all the windows here
     desktop:document.getElementById("desktop"),
 
     init: function ()
@@ -21,13 +21,27 @@ var main =
             main.windows.push(myWindow);
             
             //create html elements that builds the window
-            var newWindow = myWindow.createImageGalleryWindow();
+            myWindow = myWindow.createImageGalleryWindow();
             
             //add the new window to the desktop
-            main.desktop.appendChild(newWindow);
+            main.desktop.appendChild(myWindow);
             
 
         }
+        main.rssIcon.onclick = function(){
+            
+            //create new object
+            var myWindow = new PWD.RssWindow(300,500, main.windows.length);
+            main.windows.push(myWindow);
+            
+            //create html elements that builds the window
+            myWindow = myWindow.createRssWindow();
+            
+            //add the new window to the desktop
+            main.desktop.appendChild(myWindow);
+            
+        }
+        
         
     }
 };
