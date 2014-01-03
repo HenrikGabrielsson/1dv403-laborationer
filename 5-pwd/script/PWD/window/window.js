@@ -1,8 +1,8 @@
 "use strict";
 
 var PWD = PWD || {};
+PWD.window = PWD.window || {};
 
- 
 
 //constructor
 PWD.Window = function(width, height, index) 

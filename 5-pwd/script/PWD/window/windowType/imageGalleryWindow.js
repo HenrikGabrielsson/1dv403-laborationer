@@ -1,6 +1,8 @@
 "use strict";
 
 var PWD = PWD || {};
+PWD.window = PWD.window || {};
+PWD.window.windowType = PWD.window.windowType || {};
 
 //The Image gallery(inherits from Window)
 PWD.ImageGallery = function(width, height, index) 

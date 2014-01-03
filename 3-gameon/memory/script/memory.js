@@ -2,7 +2,7 @@
 
 var Memory = 
 {
-    
+        
     game_board: document.getElementById("game_board"),
     
     correctGuesses: 0,

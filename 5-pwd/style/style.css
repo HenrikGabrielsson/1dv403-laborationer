@@ -62,6 +62,12 @@ body
     overflow:auto;   
 }
 
+.fullPicture
+{
+    display:block;
+    margin:auto;
+}
+
 .thumbnailDiv
 {
     height:60px;
