@@ -23,15 +23,43 @@ PWD.RssWindow.prototype.createRssWindow = function()
     this.windowTitle.appendChild(document.createTextNode("RSS Feed"));
     
     var thisGetRssFeed = this.getRssFeed;
+    var windowContent = this.windowContent;
+
+    //adds data from rss to the window
+    var addFeedToWindow = function()
+    {
+        thisGetRssFeed(function(isLoading,data)
+        {
+        if(isLoading)
+        {
+            windowContent.style.backgroundImage ="url('pics/loading.gif')";
+            windowContent.style.backgroundRepeat ="no-repeat";
+            windowContent.style.backgroundPosition ="center center";                
+        }
+ 
+        else
+        {
+            windowContent.style.background = "white";
+        }
+        
+        //add the data only if it contains something
+        if(data !== undefined)
+        {
+            windowContent.innerHTML = data;
+        }
+        });
+   }
     
-    //get news
-    var updateFeed = setInterval(function(){
-       thisGetRssFeed()
-    }, 1000)
+    //get news every 5 seconds
+    addFeedToWindow();/*
+    var updateFeed = setInterval(function()
+    {
+       addFeedToWindow();
+       
+    }, 5000)*/
     
     //stop updating when window is closed
     this.closeButton.onclick = function(){clearInterval(updateFeed)};
-    
     return newWindow;
 }
 
@@ -50,7 +78,7 @@ PWD.RssWindow.prototype.getRssFeed = function(callback)
             //checking for errors
             if(request.status >= 200 && request.status < 300 || request.status === 304)
             {
-                callback(request.responseText);
+                callback(false, request.responseText);
             }
             else
             {
@@ -58,13 +86,14 @@ PWD.RssWindow.prototype.getRssFeed = function(callback)
             }
         }
         
+        //if still loading
         else if(request.readyState === 1)
         {
-            
+            callback(true);
         }
 
     };
-    request.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/", true);
+    request.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=http://www.dn.se/m/rss/senaste-nytt", true);
     request.send(null);
     
     
