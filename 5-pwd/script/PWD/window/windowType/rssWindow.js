@@ -5,10 +5,10 @@ PWD.window = PWD.window || {};
 PWD.window.windowType = PWD.window.windowType || {};
 
 //The RSS-feed window(inherits from Window)
-PWD.RssWindow = function(width, height, index) 
+PWD.RssWindow = function(width, height) 
 {
     //set width and height from WIndow-class
-    PWD.Window.call(this, width, height, index);
+    PWD.Window.call(this, width, height);
 };
 PWD.RssWindow.prototype = new PWD.Window;
 

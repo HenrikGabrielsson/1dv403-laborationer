@@ -5,10 +5,10 @@ PWD.window = PWD.window || {};
 PWD.window.windowType = PWD.window.windowType || {};
 
 //The Image Viewer(inherits from Window) shows a single large picture
-PWD.ImageViewer = function(width, height, index, URL) 
+PWD.ImageViewer = function(width, height, URL) 
 {
     //set width and height from WIndow-class
-    PWD.Window.call(this, width*1.10, height*1.20, index);
+    PWD.Window.call(this, width*1.10, height*1.20);
     this.URL = URL;
 };
 PWD.ImageViewer.prototype = new PWD.Window;
