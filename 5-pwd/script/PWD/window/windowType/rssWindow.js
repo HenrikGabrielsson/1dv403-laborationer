@@ -54,7 +54,8 @@ PWD.RssWindow.prototype.createRssWindow = function()
     addFeedToWindow();/*
     var updateFeed = setInterval(function()
     {
-       addFeedToWindow();
+                
+        addFeedToWindow();
        
     }, 5000)*/
     

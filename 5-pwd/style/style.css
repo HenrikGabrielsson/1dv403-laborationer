@@ -115,18 +115,21 @@ body
     font-family:"Century Gothic", arial;
     font-weight:bold;
     font-size:11pt;
-    margin-top:80px;
-    
+    margin-top:40px;
+    float:left;
 }
 
 .rssFeed a
 {
     color:black;
+    float:left;
+    margin:5px 0 10px 0;
 }
 
 .rssFeed p
 {
     color:black;
     font-size:10pt;
+    float:left;
 }
 

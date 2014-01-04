@@ -64,13 +64,10 @@ PWD.Window.prototype.createBasicWindow = function()
     this.closeButtonImage.setAttribute("class","windowButton");
     this.closeButton.appendChild(this.closeButtonImage);
     
-    
-    
     this.resizeButton = document.createElement("a");
     this.resizeButton.setAttribute("class", "resizeButton");
     this.resizeButton.addEventListener("click", function() {
-    
-    
+
         //if window isn't fullsize already
         if(thisWindow.style.width == thisWidth+"px" && thisWindow.style.height == thisHeight+"px")
         {
@@ -101,12 +98,18 @@ PWD.Window.prototype.createBasicWindow = function()
     var thisResizeButtonImage = this.resizeButtonImage;
     
     
+    //Statusfield at bottom of window
+    this.statusField = document.createElement("p");
+    this.statusField.setAttribute("class","statusField");
+    
+    
     //add all elements to window
     this.window.appendChild(this.windowIcon);
     this.window.appendChild(this.windowTitle);
     this.window.appendChild(this.closeButton);
     this.window.appendChild(this.resizeButton);
     this.window.appendChild(this.windowContent);
+    this.window.appendChild(this.statusField);
 
     return this.window;
 };
