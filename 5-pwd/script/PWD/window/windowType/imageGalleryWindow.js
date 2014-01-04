@@ -57,8 +57,7 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
         //function that displays clicked image in it's own window
         function displayImage (i)
         {
-            var imageViewer = new PWD.ImageViewer(i.width, i.height, main.windows.length, i.URL);
-            main.windows.push(imageViewer);
+            var imageViewer = new PWD.ImageViewer(i.width, i.height, i.URL);
             imageViewer.createImageViewerWindow();
         };
 
