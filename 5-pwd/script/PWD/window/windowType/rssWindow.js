@@ -13,7 +13,6 @@ PWD.RssWindow = function(width, height)
 PWD.RssWindow.prototype = new PWD.Window;
 
 
-
 PWD.RssWindow.prototype.createRssWindow = function()
 {
     var newWindow = this.createBasicWindow();
@@ -24,6 +23,7 @@ PWD.RssWindow.prototype.createRssWindow = function()
     
     var thisGetRssFeed = this.getRssFeed;
     var windowContent = this.windowContent;
+    var message = this.statusMessage; 
 
     //adds data from rss to the window
     var addFeedToWindow = function()
@@ -32,14 +32,20 @@ PWD.RssWindow.prototype.createRssWindow = function()
         {
         if(isLoading)
         {
-            windowContent.style.backgroundImage ="url('pics/loading.gif')";
-            windowContent.style.backgroundRepeat ="no-repeat";
-            windowContent.style.backgroundPosition ="center center";                
+            message.setAttribute("class","isLoading");
+            message.innerHTML = "Uppdaterar...";               
         }
  
         else
         {
             windowContent.style.background = "white";
+
+            //get last update time
+            var fullDate = new Date();
+            var time = fullDate.getHours() + ":" + (fullDate.getMinutes()<10?0:"") + fullDate.getMinutes() + ":" + (fullDate.getSeconds()<10?0:"") + fullDate.getSeconds()
+
+            message.removeAttribute("class");
+            message.innerHTML = "Senast uppdaterad: " + time ;
         }
         
         //add the data only if it contains something
@@ -48,16 +54,16 @@ PWD.RssWindow.prototype.createRssWindow = function()
             windowContent.innerHTML = data;
         }
         });
-   }
+   };
     
-    //get news every 5 seconds
-    addFeedToWindow();/*
+    //get news every 30 seconds
+    addFeedToWindow();
     var updateFeed = setInterval(function()
     {
                 
         addFeedToWindow();
        
-    }, 5000)*/
+    }, 30000)
     
     //stop updating when window is closed
     this.closeButton.onclick = function(){clearInterval(updateFeed)};

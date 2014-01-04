@@ -24,9 +24,12 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
     this.windowTitle.appendChild(document.createTextNode("Image Gallery"));
     
     var windowContent = this.windowContent;
+    var message = this.statusMessage;
     
     //gets images and  uses anonymous function to get the returned data when everything has loaded
     this.getImagesFromServer(function(isLoading,data){
+        
+        
         
         //if loading is not finished
         if (isLoading)
@@ -34,14 +37,22 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
             windowContent.style.backgroundImage ="url('pics/loading.gif')";
             windowContent.style.backgroundRepeat ="no-repeat";
             windowContent.style.backgroundPosition ="center center";
+            message.setAttribute("class","isLoading");
+            message.innerHTML = "laddar...";
+
             
         }
-        else
+
+        //saving pictures
+        var images =JSON.parse(data);
+        
+        //when it's no longer loading
+        if(!isLoading)
         {
             windowContent.style.background = "white";
+            message.removeAttribute("class");
+            message.innerHTML = images.length + " bilder har laddats in.";
         }
-        
-        var images =JSON.parse(data);
 
         //function that displays clicked image in it's own window
         function displayImage (i)
@@ -73,6 +84,7 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
             thumbnail.setAttribute("src",images[i].thumbURL);
             thumbnail.setAttribute("height",images[i].thumbHeight)
             thumbnail.setAttribute("width",images[i].thumbWidth)
+            
             
             thumbnailDiv.appendChild(thumbnail);
             thumbnailLink.appendChild(thumbnailDiv);

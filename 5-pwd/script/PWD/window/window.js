@@ -127,9 +127,10 @@ PWD.Window.prototype.createBasicWindow = function()
     
     
     //Statusfield at bottom of window
-    this.statusField = document.createElement("p");
+    this.statusField = document.createElement("div");
     this.statusField.setAttribute("class","statusField");
-    
+    this.statusMessage = document.createElement("p");
+    this.statusField.appendChild(this.statusMessage);
     
     //add all elements to window
     this.window.appendChild(this.windowIcon);

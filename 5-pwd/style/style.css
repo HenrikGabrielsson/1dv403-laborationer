@@ -133,3 +133,16 @@ body
     float:left;
 }
 
+
+.statusField .isLoading
+{
+    background-image:url('../pics/loading.gif');
+    background-repeat:no-repeat;
+    background-position:left;
+    background-size:10px 10px;
+    
+    padding-left:10px;
+    
+}
+
+
