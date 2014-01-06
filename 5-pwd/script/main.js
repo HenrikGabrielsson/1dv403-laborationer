@@ -43,7 +43,7 @@ var main =
         main.memoryIcon.onclick = function()
         {
             //create new object
-            var myWindow = new PWD.memoryWindow(400,400);
+            var myWindow = new PWD.memoryWindow(200,200);
             
             //create HTML elements that builds the window
             myWindow = myWindow.createMemoryWindow();

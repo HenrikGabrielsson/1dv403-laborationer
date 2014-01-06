@@ -78,6 +78,8 @@ PWD.Window.prototype.createBasicWindow = function()
     //Div for the content
     this.windowContent = document.createElement("div");
     this.windowContent.setAttribute("class", "windowContent");
+    this.windowContent.style.height=this.height-50 +"px";
+    
     
     //buttons for the window-object
     this.closeButton = document.createElement("a");

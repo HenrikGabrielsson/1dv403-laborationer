@@ -54,7 +54,6 @@ body
     opacity:1;
     
     width:98%;
-    height:86%;
     margin:0 1% 0 1%;
     border-radius:5px;
     
@@ -152,6 +151,12 @@ body
     
     padding-left:10px;
     
+}
+
+.game_board
+{
+    margin:auto;
+    width:60%;   
 }
 
 
