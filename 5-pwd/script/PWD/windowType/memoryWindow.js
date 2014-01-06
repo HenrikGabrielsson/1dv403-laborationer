@@ -1,25 +1,24 @@
 "use strict";
 
 var PWD = PWD || {};
-PWD.window = PWD.window || {};
-PWD.window.windowType = PWD.window.windowType || {};
+PWD.windowType = PWD.windowType || {};
 
 
 
 //The Memory game(inherits from Window) displays a game of memory
-PWD.memoryWindow = function(width, height) 
+PWD.windowType.memoryWindow = function(width, height) 
 {
     //set width and height from WIndow-class
-    PWD.Window.call(this, width, height);
+    PWD.windowType.BasicWindow.call(this, width, height);
     
 
 };
-PWD.memoryWindow.prototype = new PWD.Window;
+PWD.windowType.memoryWindow.prototype = new PWD.windowType.BasicWindow;
 
 
 
 //this creates a new memory game
-PWD.memoryWindow.prototype.createMemoryWindow = function()
+PWD.windowType.memoryWindow.prototype.createMemoryWindow = function()
 {
     var newWindow = this.createBasicWindow();
 
@@ -40,7 +39,7 @@ PWD.memoryWindow.prototype.createMemoryWindow = function()
     this.game_board.setAttribute("class","game_board");
     var thisGame_board = this.game_board;
     
-    this.memoryArray = new RandomGenerator.getPictureArray(4,4);
+    this.memoryArray = new PWD.RandomGenerator.getPictureArray(4,4);
     
     var memoryArray = this.memoryArray;
     var clickedCards = this.clickedCards;

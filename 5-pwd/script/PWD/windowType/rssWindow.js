@@ -1,19 +1,18 @@
 "use strict";
 
 var PWD = PWD || {};
-PWD.window = PWD.window || {};
-PWD.window.windowType = PWD.window.windowType || {};
+PWD.windowType = PWD.windowType || {};
 
 //The RSS-feed window(inherits from Window)
-PWD.RssWindow = function(width, height) 
+PWD.windowType.RssWindow = function(width, height) 
 {
     //set width and height from WIndow-class
-    PWD.Window.call(this, width, height);
+    PWD.windowType.BasicWindow.call(this, width, height);
 };
-PWD.RssWindow.prototype = new PWD.Window;
+PWD.windowType.RssWindow.prototype = new PWD.windowType.BasicWindow;
 
 
-PWD.RssWindow.prototype.createRssWindow = function()
+PWD.windowType.RssWindow.prototype.createRssWindow = function()
 {
     var newWindow = this.createBasicWindow();
     
@@ -71,7 +70,7 @@ PWD.RssWindow.prototype.createRssWindow = function()
 }
 
 //Function that gets the rss feed
-PWD.RssWindow.prototype.getRssFeed = function(callback)
+PWD.windowType.RssWindow.prototype.getRssFeed = function(callback)
 {
     
     var request = new XMLHttpRequest();

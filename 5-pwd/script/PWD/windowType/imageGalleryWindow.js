@@ -1,20 +1,19 @@
 "use strict";
 
 var PWD = PWD || {};
-PWD.window = PWD.window || {};
-PWD.window.windowType = PWD.window.windowType || {};
+PWD.windowType = PWD.windowType || {};
 
 //The Image gallery(inherits from Window)
-PWD.ImageGallery = function(width, height) 
+PWD.windowType.ImageGallery = function(width, height) 
 {
     //set width and height from WIndow-class
-    PWD.Window.call(this, width, height);
+    PWD.windowType.BasicWindow.call(this, width, height);
 
 };
-PWD.ImageGallery.prototype = new PWD.Window;
+PWD.windowType.ImageGallery.prototype = new PWD.windowType.BasicWindow;
 
 
-PWD.ImageGallery.prototype.createImageGalleryWindow = function()
+PWD.windowType.ImageGallery.prototype.createImageGalleryWindow = function()
 {
     //call function in superclass to create a basic window
     var returnWindow = this.createBasicWindow();
@@ -38,8 +37,8 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
             message.setAttribute("class","isLoading");
             message.innerHTML = "laddar...";
 
-            
         }
+
 
         //saving pictures
         var images =JSON.parse(data);
@@ -55,7 +54,7 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
         //function that displays clicked image in it's own window
         function displayImage (i)
         {
-            var imageViewer = new PWD.ImageViewer(i.width, i.height, i.URL);
+            var imageViewer = new PWD.windowType.ImageViewer(i.width, i.height, i.URL);
             return imageViewer;
         };
 
@@ -70,7 +69,7 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
                 return function()
                 {
                     var viewerWindow = displayImage(images[i])
-                    main.desktop.appendChild(viewerWindow.createImageViewerWindow());
+                    PWD.main.desktop.appendChild(viewerWindow.createImageViewerWindow());
                 }
                 
             }(i),false);
@@ -95,7 +94,7 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
 }
 
 //function that gets images from a remote server with ajax
-PWD.ImageGallery.prototype.getImagesFromServer = function(callback)
+PWD.windowType.ImageGallery.prototype.getImagesFromServer = function(callback)
 {
     var request = new XMLHttpRequest();
 

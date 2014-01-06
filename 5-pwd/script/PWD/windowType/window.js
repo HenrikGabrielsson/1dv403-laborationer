@@ -1,11 +1,11 @@
 "use strict";
 
 var PWD = PWD || {};
-PWD.window = PWD.window || {};
+PWD.windowType = PWD.windowType || {};
 
 
 //constructor
-PWD.Window = function(width, height, index) 
+PWD.windowType.BasicWindow = function(width, height, index) 
 {
     
     this.width = width;
@@ -15,34 +15,34 @@ PWD.Window = function(width, height, index)
 };
 
 //static int for the window's z-index
-PWD.Window.layer = 0;
+PWD.windowType.BasicWindow.layer = 0;
 
-PWD.Window.horizontalPosition = 0;
-PWD.Window.verticalPosition = 0;
+PWD.windowType.BasicWindow.horizontalPosition = 0;
+PWD.windowType.BasicWindow.verticalPosition = 0;
 
 //Method that creates a HTML-div with the properties and functions of a window
-PWD.Window.prototype.createBasicWindow = function()
+PWD.windowType.BasicWindow.prototype.createBasicWindow = function()
     {
     this.window = document.createElement("div");
 
     //decides where to position the window. if the window will be position outside of the browser the position will go back to the top
-    if(this.height + PWD.Window.verticalPosition + 20 >= window.innerHeight - 40)
+    if(this.height + PWD.windowType.BasicWindow.verticalPosition + 20 >= window.innerHeight - 40)
     {
-        PWD.Window.verticalPosition = 0;        
+        PWD.windowType.BasicWindow.verticalPosition = 0;        
     }
     else
     {
-        PWD.Window.verticalPosition += 20;
+        PWD.windowType.BasicWindow.verticalPosition += 20;
     }
 
     //same thing as above, but horizontal
-    if(this.width + PWD.Window.horizontalPosition + 20 >= window.innerWidth - 40)
+    if(this.width + PWD.windowType.horizontalPosition + 20 >= window.innerWidth - 40)
     {
-        PWD.Window.horizontalPosition = 0;        
+        PWD.windowType.BasicWindow.horizontalPosition = 0;        
     }
     else
     {
-        PWD.Window.horizontalPosition += 20;
+        PWD.windowType.BasicWindow.horizontalPosition += 20;
     }
 
 
@@ -50,16 +50,16 @@ PWD.Window.prototype.createBasicWindow = function()
     this.window.setAttribute("class", "window");
     this.window.style.width = this.width+"px";
     this.window.style.height = this.height+"px";
-    this.window.style.zIndex = PWD.Window.layer++;
-    this.window.style.top = PWD.Window.verticalPosition+"px";
-    this.window.style.left = PWD.Window.horizontalPosition+"px";
+    this.window.style.zIndex = PWD.windowType.BasicWindow.layer++;
+    this.window.style.top = PWD.windowType.BasicWindow.verticalPosition+"px";
+    this.window.style.left = PWD.windowType.BasicWindow.horizontalPosition+"px";
      
 
     
     //allows user to focus on window
     this.window.addEventListener("click", function()
     {
-        thisWindow.style.zIndex = PWD.Window.layer++;
+        thisWindow.style.zIndex = PWD.windowType.BasicWindow.layer++;
         
     },true);
     
@@ -67,8 +67,8 @@ PWD.Window.prototype.createBasicWindow = function()
     var thisWindow = this.window;
     var thisWidth = this.width;
     var thisHeight = this.height;
-    var verticalPosition = PWD.Window.verticalPosition;
-    var horizontalPosition = PWD.Window.horizontalPosition;
+    var verticalPosition = PWD.windowType.BasicWindow.verticalPosition;
+    var horizontalPosition = PWD.windowType.BasicWindow.horizontalPosition;
 
     //icon and name in upper, left corner
     this.windowIcon = document.createElement("img");

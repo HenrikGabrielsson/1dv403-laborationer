@@ -1,4 +1,8 @@
-var RandomGenerator = {
+"use strict";
+
+var PWD = PWD || {};
+
+PWD.RandomGenerator = {
 	
 	/*
 		Denna metod tar antalet rader och columner som inparameter.
