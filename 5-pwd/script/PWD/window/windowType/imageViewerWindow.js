@@ -28,7 +28,6 @@ PWD.ImageViewer.prototype.createImageViewerWindow = function()
     image.setAttribute("class","fullPicture");
     
     this.windowContent.appendChild(image);
-    main.desktop.appendChild(newWindow);
     
     return newWindow;
 }

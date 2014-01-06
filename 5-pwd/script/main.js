@@ -12,7 +12,8 @@ var main =
     {
            
         //onclick events for taskbar
-        main.imageIcon.onclick = function(){
+        main.imageIcon.onclick = function()
+        {
             
             
             //create new object
@@ -26,16 +27,29 @@ var main =
             
 
         }
-        main.rssIcon.onclick = function(){
+        main.rssIcon.onclick = function()
+        {
             
             //create new object
             var myWindow = new PWD.RssWindow(300,500);
             
             //create html elements that builds the window
             myWindow = myWindow.createRssWindow();
-            
+
             //add the new window to the desktop
             main.desktop.appendChild(myWindow);
+            
+        }
+        main.memoryIcon.onclick = function()
+        {
+            //create new object
+            var myWindow = new PWD.memoryWindow(400,400);
+            
+            //create HTML elements that builds the window
+            myWindow = myWindow.createMemoryWindow();
+            
+            //add the new window to the desktop
+            main.desktop.appendChild(myWindow)
             
         }
         

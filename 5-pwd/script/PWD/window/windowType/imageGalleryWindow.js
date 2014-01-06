@@ -29,8 +29,6 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
     //gets images and  uses anonymous function to get the returned data when everything has loaded
     this.getImagesFromServer(function(isLoading,data){
         
-        
-        
         //if loading is not finished
         if (isLoading)
         {
@@ -58,7 +56,7 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
         function displayImage (i)
         {
             var imageViewer = new PWD.ImageViewer(i.width, i.height, i.URL);
-            imageViewer.createImageViewerWindow();
+            return imageViewer;
         };
 
         //every image object
@@ -71,7 +69,8 @@ PWD.ImageGallery.prototype.createImageGalleryWindow = function()
             {
                 return function()
                 {
-                    displayImage(images[i])    
+                    var viewerWindow = displayImage(images[i])
+                    main.desktop.appendChild(viewerWindow.createImageViewerWindow());
                 }
                 
             }(i),false);
