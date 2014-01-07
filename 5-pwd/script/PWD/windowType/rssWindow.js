@@ -104,4 +104,3 @@ PWD.windowType.RssWindow.prototype.getRssFeed = function(callback)
     
     
 }
-

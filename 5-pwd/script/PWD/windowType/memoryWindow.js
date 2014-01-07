@@ -141,12 +141,9 @@ PWD.windowType.memoryWindow.prototype.createMemoryWindow = function()
     //loop that creates each card    
     for(var i = 0; i < this.memoryArray.length; i++)
     {
-
-        
         var cardPicture = document.createElement("img");
         cardPicture.setAttribute("src","pics/0.png");
         cardPicture.setAttribute("class",i);
-        
         
         var cardLink = document.createElement("a");
         cardLink.setAttribute("class",i );
@@ -157,7 +154,6 @@ PWD.windowType.memoryWindow.prototype.createMemoryWindow = function()
                 tryCard(i);
             }
         }(i),false)
-
 
 
         cardLink.appendChild(cardPicture);
