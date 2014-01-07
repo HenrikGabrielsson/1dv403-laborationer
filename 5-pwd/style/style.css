@@ -11,6 +11,7 @@ body
     background-position: center center;
 }    
 
+/*Window*/
 .window
 {
     background-color:rgba(25,25,25,0.6);
@@ -61,6 +62,26 @@ body
     overflow:auto;   
 }
 
+
+.statusField
+{
+    margin-left:5px;
+    height:20px;
+}
+
+.statusField .isLoading
+{
+    background-image:url('../pics/loading.gif');
+    background-repeat:no-repeat;
+    background-position:left;
+    background-size:10px 10px;
+    
+    padding-left:10px;
+    
+}
+
+
+/*Image gallery and Viewer*/
 .fullPicture
 {
     display:block;
@@ -78,6 +99,10 @@ body
     padding-top:5px;
     margin:5px;
 }
+.thumbnailDiv:hover 
+{
+    background-color:#DDDDDD;
+}
 
 .thumbnailDiv img
 {
@@ -85,7 +110,7 @@ body
     margin:auto;
 }
 
-
+/*Taskbar*/
 #taskbar
 {
     width:100%;
@@ -108,7 +133,7 @@ body
 
 
 
-
+/*RSS*/
 .rss_title 
 {
     font-family:"Century Gothic", arial;
@@ -136,27 +161,18 @@ body
 }
 
 
-.statusField
-{
-    margin-left:5px;
-    height:20px;
-}
-
-.statusField .isLoading
-{
-    background-image:url('../pics/loading.gif');
-    background-repeat:no-repeat;
-    background-position:left;
-    background-size:10px 10px;
-    
-    padding-left:10px;
-    
-}
-
+/*Memory*/
 .game_board
 {
+    padding-top:5px;
     margin:auto;
-    width:60%;   
+    max-width:140px;   
 }
+
+.game_board img
+{
+    margin:5px;
+}
+
 
 

@@ -147,6 +147,7 @@ PWD.windowType.memoryWindow.prototype.createMemoryWindow = function()
         cardPicture.setAttribute("src","pics/0.png");
         cardPicture.setAttribute("class",i);
         
+        
         var cardLink = document.createElement("a");
         cardLink.setAttribute("class",i );
         cardLink.addEventListener("click",function(i)
@@ -156,6 +157,8 @@ PWD.windowType.memoryWindow.prototype.createMemoryWindow = function()
                 tryCard(i);
             }
         }(i),false)
+
+
 
         cardLink.appendChild(cardPicture);
         this.game_board.appendChild(cardLink);

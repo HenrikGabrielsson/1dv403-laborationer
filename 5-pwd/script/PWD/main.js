@@ -2,6 +2,7 @@
 
 var PWD = PWD || {};
 
+//main class. initiates the taskbar-buttons
 PWD.main =  
 {
     //get the icons from taskbar
