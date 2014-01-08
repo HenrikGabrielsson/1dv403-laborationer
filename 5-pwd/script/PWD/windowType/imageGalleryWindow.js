@@ -75,7 +75,7 @@ PWD.windowType.ImageGallery.prototype.createImageGalleryWindow = function()
             }(i),false);
             
             var thumbnailDiv = document.createElement("div");
-            thumbnailDiv.setAttribute("class","ThumbnailDiv");
+            thumbnailDiv.setAttribute("class","thumbnailDiv");
             
             var thumbnail = document.createElement("img");
             thumbnail.setAttribute("src",images[i].thumbURL);
