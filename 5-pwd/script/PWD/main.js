@@ -20,7 +20,7 @@ PWD.main =
             
             
             //create new object
-            var myWindow = new PWD.windowType.ImageGallery(500, 400);
+            var myWindow = new PWD.windowType.ImageGallery(500, 400, "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/");
             
             //create html elements that builds the window
             myWindow = myWindow.createImageGalleryWindow();
@@ -34,7 +34,7 @@ PWD.main =
         {
             
             //create new object
-            var myWindow = new PWD.windowType.RssWindow(300,500);
+            var myWindow = new PWD.windowType.RssWindow(300,500, "http://www.dn.se/m/rss/senaste-nytt")
             
             //create html elements that builds the window
             myWindow = myWindow.createRssWindow();

@@ -4,11 +4,11 @@ var PWD = PWD || {};
 PWD.windowType = PWD.windowType || {};
 
 //The Image Viewer(inherits from Window) shows a single large picture
-PWD.windowType.ImageViewer = function(width, height, URL) 
+PWD.windowType.ImageViewer = function(width, height, url) 
 {
     //set width and height from WIndow-class
     PWD.windowType.BasicWindow.call(this, width*1.10, height*1.20);
-    this.URL = URL;
+    this.url = url;
 };
 PWD.windowType.ImageViewer.prototype = new PWD.windowType.BasicWindow;
 
@@ -23,7 +23,7 @@ PWD.windowType.ImageViewer.prototype.createImageViewerWindow = function()
     
     
     var image = document.createElement("img");
-    image.setAttribute("src", this.URL);
+    image.setAttribute("src", this.url);
     image.setAttribute("class","fullPicture");
     
     this.windowContent.appendChild(image);

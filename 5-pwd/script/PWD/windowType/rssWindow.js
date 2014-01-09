@@ -4,10 +4,11 @@ var PWD = PWD || {};
 PWD.windowType = PWD.windowType || {};
 
 //The RSS-feed window(inherits from Window)
-PWD.windowType.RssWindow = function(width, height) 
+PWD.windowType.RssWindow = function(width, height,url) 
 {
     //set width and height from WIndow-class
     PWD.windowType.BasicWindow.call(this, width, height);
+    this.url = url;
 };
 PWD.windowType.RssWindow.prototype = new PWD.windowType.BasicWindow;
 
@@ -15,6 +16,8 @@ PWD.windowType.RssWindow.prototype = new PWD.windowType.BasicWindow;
 PWD.windowType.RssWindow.prototype.createRssWindow = function()
 {
     var newWindow = this.createBasicWindow();
+    
+    var url = this.url;
     
     //icon and title
     this.windowIcon.setAttribute("src","pics/rss.png");
@@ -52,7 +55,7 @@ PWD.windowType.RssWindow.prototype.createRssWindow = function()
         {
             windowContent.innerHTML = data;
         }
-        });
+        },url);
    };
     
     //get news every 30 seconds
@@ -70,7 +73,7 @@ PWD.windowType.RssWindow.prototype.createRssWindow = function()
 }
 
 //Function that gets the rss feed
-PWD.windowType.RssWindow.prototype.getRssFeed = function(callback)
+PWD.windowType.RssWindow.prototype.getRssFeed = function(callback,url)
 {
     
     var request = new XMLHttpRequest();
@@ -99,7 +102,10 @@ PWD.windowType.RssWindow.prototype.getRssFeed = function(callback)
         }
 
     };
-    request.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=http://www.dn.se/m/rss/senaste-nytt", true);
+    
+    var escapedUrl = escape(url); 
+    
+    request.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url=" + escapedUrl, true);
     request.send(null);
     
     

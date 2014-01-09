@@ -4,10 +4,11 @@ var PWD = PWD || {};
 PWD.windowType = PWD.windowType || {};
 
 //The Image gallery(inherits from Window)
-PWD.windowType.ImageGallery = function(width, height) 
+PWD.windowType.ImageGallery = function(width, height,url) 
 {
-    //set width and height from WIndow-class
+    //set width and height from Window-class
     PWD.windowType.BasicWindow.call(this, width, height);
+    this.url = url;
 
 };
 PWD.windowType.ImageGallery.prototype = new PWD.windowType.BasicWindow;
@@ -118,9 +119,9 @@ PWD.windowType.ImageGallery.prototype.getImagesFromServer = function(callback)
         {
             callback(true)    
         }
-
     };
-    request.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
+
+    request.open("GET", this.url, true);
     request.send(null);
     
 }
