@@ -36,8 +36,9 @@ PWD.windowType.BasicWindow.prototype.createBasicWindow = function()
     }
 
     //same thing as above, but horizontal
-    if(this.width + PWD.windowType.horizontalPosition + 20 >= window.innerWidth - 40)
+    if(this.width + PWD.windowType.BasicWindow.horizontalPosition + 20 >= window.innerWidth)
     {
+
         PWD.windowType.BasicWindow.horizontalPosition = 0;        
     }
     else
