@@ -116,7 +116,7 @@ PWD.windowType.BasicWindow.prototype.createBasicWindow = function()
             thisWindow.style.width = thisWidth+"px";
             thisWindow.style.height = thisHeight+"px";
             thisWindow.style.top = verticalPosition+"px";
-            thisWindow.style.left = horizontalPosition*20+"px";
+            thisWindow.style.left = horizontalPosition+20+"px";
             
             thisResizeButtonImage.setAttribute("src", "pics/resize.png");
         }

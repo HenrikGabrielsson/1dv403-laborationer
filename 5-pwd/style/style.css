@@ -5,10 +5,11 @@ html, body
 
 body
 {
-    background-image:url('../pics/background.jpg');
-    background-repeat:no-repeat;
-    background-color:#444444;
-    background-position: center center;
+    background: -webkit-linear-gradient(#111111, #444444);
+    background: -o-linear-gradient(#111111, #444444);
+    background: -moz-linear-gradient(#111111, #444444);
+    background: linear-gradient(#111111, #444444);
+
 }    
 
 /*Window*/
