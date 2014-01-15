@@ -35,10 +35,12 @@ PWD.windowType.memoryWindow.prototype.createMemoryWindow = function()
     
     var statusMessage = this.statusMessage;
     
+    
     this.game_board = document.createElement("div");
     this.game_board.setAttribute("class","game_board");
     var thisGame_board = this.game_board;
     
+    //the array with pictures is created
     this.memoryArray = new PWD.RandomGenerator.getPictureArray(4,4);
     
     var memoryArray = this.memoryArray;

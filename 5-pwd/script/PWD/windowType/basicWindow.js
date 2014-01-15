@@ -83,7 +83,7 @@ PWD.windowType.BasicWindow.prototype.createBasicWindow = function()
     var thisWindowContent = this.windowContent;
     
     
-    //buttons for the window-object
+    //the button that closes the window
     this.closeButton = document.createElement("a");
     this.closeButton.setAttribute("class", "closeButton");
     this.closeButton.addEventListener("click", function(){
@@ -96,6 +96,7 @@ PWD.windowType.BasicWindow.prototype.createBasicWindow = function()
     this.closeButtonImage.setAttribute("class","windowButton");
     this.closeButton.appendChild(this.closeButtonImage);
     
+    //the window resize button
     this.resizeButton = document.createElement("a");
     this.resizeButton.setAttribute("class", "resizeButton");
     this.resizeButton.addEventListener("click", function() {

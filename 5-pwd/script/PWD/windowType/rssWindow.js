@@ -81,7 +81,7 @@ PWD.windowType.RssWindow.prototype.getRssFeed = function(callback,url)
     request.onreadystatechange = function()
     {
         
-    
+    //if the server has responded
     if(request.readyState === 4)
         {
             //checking for errors
@@ -95,11 +95,11 @@ PWD.windowType.RssWindow.prototype.getRssFeed = function(callback,url)
             }
         }
         
-        //if still loading
-        else if(request.readyState === 1)
-        {
-            callback(true);
-        }
+    //if still loading
+    else if(request.readyState === 1)
+    {
+        callback(true);
+    }
 
     };
     
