@@ -80,6 +80,7 @@ PWD.windowType.BasicWindow.prototype.createBasicWindow = function()
     this.windowContent = document.createElement("div");
     this.windowContent.setAttribute("class", "windowContent");
     this.windowContent.style.height=this.height-50 +"px";
+    var thisWindowContent = this.windowContent;
     
     
     //buttons for the window-object
@@ -107,6 +108,9 @@ PWD.windowType.BasicWindow.prototype.createBasicWindow = function()
             thisWindow.style.top = 0;
             thisWindow.style.left = 0;
 
+            thisWindowContent.style.height = window.innerHeight - (50 + verticalPosition) +"px";
+            
+            //change button
             thisResizeButtonImage.setAttribute("src", "pics/resize2.png");
         }
     
@@ -118,6 +122,9 @@ PWD.windowType.BasicWindow.prototype.createBasicWindow = function()
             thisWindow.style.top = verticalPosition+"px";
             thisWindow.style.left = horizontalPosition+20+"px";
             
+            thisWindowContent.style.height = thisHeight - 50 + "px";
+            
+            //change button
             thisResizeButtonImage.setAttribute("src", "pics/resize.png");
         }
     }, false);
